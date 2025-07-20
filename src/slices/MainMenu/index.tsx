@@ -1,9 +1,9 @@
-import { FC } from "react";
-import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { Bounded } from "@/app/components/bounded";
 import Button from "@/app/components/button";
+import { Content } from "@prismicio/client";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { SliceComponentProps } from "@prismicio/react";
+import { FC } from "react";
 
 /**
  * Props for `MainMenu`.
@@ -19,26 +19,26 @@ const MainMenu: FC<MainMenuProps> = ({ slice }) => {
     <nav
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="absolute z-10 w-full top-8  "
+      className="absolute top-8 z-10 w-full"
     >
-      <Bounded className=" border border-afm-blue/20  backdrop-blur-sm bg-afm-blue/10 rounded-2xl  px-10 py-5">
-        <div className="flex justify-between items-center">
+      <Bounded className="border-afm-blue/20 bg-afm-blue/10 rounded-2xl border px-10 py-5 backdrop-blur-sm">
+        <div className="flex items-center justify-between">
           <PrismicNextImage
             field={slice.primary.logo}
             quality={100}
             className="h-16 w-60"
           />
-          <div className=" text-white/70 font-light text-lg">
-            <ul className="flex gap-4 h-full">
+          <div className="text-lg font-light text-white/70">
+            <ul className="flex h-full gap-4">
               {slice.primary.linkitem.map((link) => (
                 <li
                   key={link.key}
-                  className="list-none flex flex-col items-center justify-between gap-3.5 h-full"
+                  className="flex h-full list-none flex-col items-center justify-between gap-3.5"
                 >
                   <PrismicNextLink field={link} />
                   {/*//TODO:fix this logic using active state*/}
                   {link.text === "About" ? (
-                    <div className="absolute bottom-0 translate-y-1/2 bg-afm-red border-2 border-afm-gray  animate-pulse w-3 h-3 rounded-full" />
+                    <div className="bg-afm-blue border-afm-gray absolute bottom-0 h-3 w-3 translate-y-1/2 animate-pulse rounded-full border-2" />
                   ) : (
                     ""
                   )}
@@ -48,7 +48,7 @@ const MainMenu: FC<MainMenuProps> = ({ slice }) => {
           </div>
           <Button
             link={slice.primary.buttonlink}
-            className="py-3 px-11 rounded-xl capitalize text-lg"
+            className="rounded-xl px-11 py-3 text-lg capitalize"
           >
             {slice.primary.buttontext}
           </Button>

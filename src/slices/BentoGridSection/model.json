@@ -1,0 +1,148 @@
+{
+  "id": "bento_grid_section",
+  "type": "SharedSlice",
+  "name": "BentoGridSection",
+  "description": "BentoGridSection",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "body",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "card": {
+          "type": "Group",
+          "config": {
+            "label": "card",
+            "repeat": true,
+            "fields": {
+              "icon": {
+                "type": "Select",
+                "config": {
+                  "label": "icon",
+                  "placeholder": "",
+                  "options": [
+                    "cog",
+                    "sparkles",
+                    "globe",
+                    "people",
+                    "book"
+                  ]
+                }
+              },
+              "card_heading": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "card_heading",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading3"
+                }
+              },
+              "card_body": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "card_body",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "withoutGrid",
+      "name": "without_grid",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "body",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "card": {
+          "type": "Group",
+          "config": {
+            "label": "card",
+            "repeat": true,
+            "fields": {
+              "icon": {
+                "type": "Select",
+                "config": {
+                  "label": "icon",
+                  "placeholder": "",
+                  "options": [
+                    "cog",
+                    "sparkles",
+                    "globe",
+                    "people",
+                    "book"
+                  ]
+                }
+              },
+              "card_heading": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "card_heading",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading3"
+                }
+              },
+              "card_body": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "card_body",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

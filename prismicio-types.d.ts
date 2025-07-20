@@ -103,7 +103,11 @@ export type FooterDocument<Lang extends string = string> =
     Lang
   >;
 
-type PageDocumentDataSlicesSlice = HeroSlice | FooterSlice | MainMenuSlice;
+type PageDocumentDataSlicesSlice =
+  | BentoGridSectionSlice
+  | HeroSlice
+  | FooterSlice
+  | MainMenuSlice;
 
 /**
  * Content for Page documents
@@ -176,6 +180,195 @@ export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
 export type AllDocumentTypes = FooterDocument | PageDocument;
+
+/**
+ * Item in *BentoGridSection → Default → Primary → card*
+ */
+export interface BentoGridSectionSliceDefaultPrimaryCardItem {
+  /**
+   * icon field in *BentoGridSection → Default → Primary → card*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bento_grid_section.default.primary.card[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  icon: prismic.SelectField<"cog" | "sparkles" | "globe" | "people" | "book">;
+
+  /**
+   * card_heading field in *BentoGridSection → Default → Primary → card*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bento_grid_section.default.primary.card[].card_heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  card_heading: prismic.RichTextField;
+
+  /**
+   * card_body field in *BentoGridSection → Default → Primary → card*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bento_grid_section.default.primary.card[].card_body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  card_body: prismic.RichTextField;
+}
+
+/**
+ * Item in *BentoGridSection → without_grid → Primary → card*
+ */
+export interface BentoGridSectionSliceWithoutGridPrimaryCardItem {
+  /**
+   * icon field in *BentoGridSection → without_grid → Primary → card*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bento_grid_section.withoutGrid.primary.card[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  icon: prismic.SelectField<"cog" | "sparkles" | "globe" | "people" | "book">;
+
+  /**
+   * card_heading field in *BentoGridSection → without_grid → Primary → card*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bento_grid_section.withoutGrid.primary.card[].card_heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  card_heading: prismic.RichTextField;
+
+  /**
+   * card_body field in *BentoGridSection → without_grid → Primary → card*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bento_grid_section.withoutGrid.primary.card[].card_body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  card_body: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *BentoGridSection → Default → Primary*
+ */
+export interface BentoGridSectionSliceDefaultPrimary {
+  /**
+   * heading field in *BentoGridSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bento_grid_section.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * body field in *BentoGridSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bento_grid_section.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * card field in *BentoGridSection → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bento_grid_section.default.primary.card[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  card: prismic.GroupField<
+    Simplify<BentoGridSectionSliceDefaultPrimaryCardItem>
+  >;
+}
+
+/**
+ * Default variation for BentoGridSection Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BentoGridSectionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<BentoGridSectionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *BentoGridSection → without_grid → Primary*
+ */
+export interface BentoGridSectionSliceWithoutGridPrimary {
+  /**
+   * heading field in *BentoGridSection → without_grid → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bento_grid_section.withoutGrid.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * body field in *BentoGridSection → without_grid → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bento_grid_section.withoutGrid.primary.body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * card field in *BentoGridSection → without_grid → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bento_grid_section.withoutGrid.primary.card[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  card: prismic.GroupField<
+    Simplify<BentoGridSectionSliceWithoutGridPrimaryCardItem>
+  >;
+}
+
+/**
+ * without_grid variation for BentoGridSection Slice
+ *
+ * - **API ID**: `withoutGrid`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BentoGridSectionSliceWithoutGrid = prismic.SharedSliceVariation<
+  "withoutGrid",
+  Simplify<BentoGridSectionSliceWithoutGridPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *BentoGridSection*
+ */
+type BentoGridSectionSliceVariation =
+  | BentoGridSectionSliceDefault
+  | BentoGridSectionSliceWithoutGrid;
+
+/**
+ * BentoGridSection Shared Slice
+ *
+ * - **API ID**: `bento_grid_section`
+ * - **Description**: BentoGridSection
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BentoGridSectionSlice = prismic.SharedSlice<
+  "bento_grid_section",
+  BentoGridSectionSliceVariation
+>;
 
 /**
  * Primary content in *Footer → Default → Primary*
@@ -520,6 +713,14 @@ declare module "@prismicio/client" {
       PageDocumentData,
       PageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      BentoGridSectionSlice,
+      BentoGridSectionSliceDefaultPrimaryCardItem,
+      BentoGridSectionSliceDefaultPrimary,
+      BentoGridSectionSliceWithoutGridPrimaryCardItem,
+      BentoGridSectionSliceWithoutGridPrimary,
+      BentoGridSectionSliceVariation,
+      BentoGridSectionSliceDefault,
+      BentoGridSectionSliceWithoutGrid,
       FooterSlice,
       FooterSliceDefaultPrimary,
       FooterSliceVariation,

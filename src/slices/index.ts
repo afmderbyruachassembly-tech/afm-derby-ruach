@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  bento_grid_section: dynamic(() => import("./BentoGridSection")),
   footer: dynamic(() => import("./Footer")),
   hero: dynamic(() => import("./Hero")),
   main_menu: dynamic(() => import("./MainMenu")),

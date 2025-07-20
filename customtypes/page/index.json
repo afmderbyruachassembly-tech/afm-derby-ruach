@@ -27,6 +27,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "bento_grid_section": {
+              "type": "SharedSlice"
+            },
             "hero": {
               "type": "SharedSlice"
             },
