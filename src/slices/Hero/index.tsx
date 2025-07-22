@@ -26,7 +26,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       <div className="absolute -z-10 h-full w-full">
         {slice.variation !== "default" ? (
           <div className="tint inset-0 h-full w-full bg-blue-950 backdrop-blur-3xl">
-            <div className="texture absolute inset-0 bg-[url('/noisy-background.webp')] object-contain mix-blend-multiply backdrop-blur-3xl" />
+            <div className="texture absolute inset-0 bg-[url('/noisy-bg.webp')] object-contain mix-blend-multiply backdrop-blur-3xl" />
           </div>
         ) : null}
 
@@ -54,7 +54,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
             {/******Texture*******/}
             <div className="texture absolute inset-0 mix-blend-multiply backdrop-blur-3xl">
               <Image
-                src="/noisy-background.webp"
+                src="/noisy-bg.webp"
                 alt=""
                 fill
                 priority
@@ -63,7 +63,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
               />
             </div>
 
-            <div className="texture absolute inset-0 h-full scale-125 bg-[url('/grainyBg.webp')] bg-cover bg-no-repeat backdrop-blur-3xl"></div>
+            <div className="texture absolute inset-0 h-full scale-125 bg-[url('/grainyBgTexture.webp')] bg-cover bg-no-repeat backdrop-blur-3xl"></div>
           </div>
 
           {/*******Content Container********/}
