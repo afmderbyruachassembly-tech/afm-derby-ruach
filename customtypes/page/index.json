@@ -27,6 +27,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "word_from_our_pastor": {
+              "type": "SharedSlice"
+            },
             "bento_grid_section": {
               "type": "SharedSlice"
             },

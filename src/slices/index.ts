@@ -7,4 +7,5 @@ export const components = {
   footer: dynamic(() => import("./Footer")),
   hero: dynamic(() => import("./Hero")),
   main_menu: dynamic(() => import("./MainMenu")),
+  word_from_our_pastor: dynamic(() => import("./WordFromOurPastor")),
 };

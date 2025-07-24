@@ -42,11 +42,12 @@
                   "label": "icon",
                   "placeholder": "",
                   "options": [
-                    "cog",
-                    "sparkles",
-                    "globe",
-                    "people",
-                    "book"
+                    "LuHeart",
+                    "LuBookOpen ",
+                    "LuUsers ",
+                    "LuShield",
+                    "LuChurch ",
+                    "LuCompass "
                   ]
                 }
               },

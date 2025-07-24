@@ -104,6 +104,7 @@ export type FooterDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | WordFromOurPastorSlice
   | BentoGridSectionSlice
   | HeroSlice
   | FooterSlice
@@ -193,7 +194,14 @@ export interface BentoGridSectionSliceDefaultPrimaryCardItem {
    * - **API ID Path**: bento_grid_section.default.primary.card[].icon
    * - **Documentation**: https://prismic.io/docs/fields/select
    */
-  icon: prismic.SelectField<"cog" | "sparkles" | "globe" | "people" | "book">;
+  icon: prismic.SelectField<
+    | "LuHeart"
+    | "LuBookOpen "
+    | "LuUsers "
+    | "LuShield"
+    | "LuChurch "
+    | "LuCompass "
+  >;
 
   /**
    * card_heading field in *BentoGridSection → Default → Primary → card*
@@ -685,6 +693,71 @@ export type MainMenuSlice = prismic.SharedSlice<
   MainMenuSliceVariation
 >;
 
+/**
+ * Primary content in *WordFromOurPastor → Default → Primary*
+ */
+export interface WordFromOurPastorSliceDefaultPrimary {
+  /**
+   * pastor_image field in *WordFromOurPastor → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: word_from_our_pastor.default.primary.pastor_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  pastor_image: prismic.ImageField<never>;
+
+  /**
+   * heading field in *WordFromOurPastor → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: word_from_our_pastor.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * body field in *WordFromOurPastor → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: word_from_our_pastor.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body: prismic.RichTextField;
+}
+
+/**
+ * Default variation for WordFromOurPastor Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WordFromOurPastorSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<WordFromOurPastorSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *WordFromOurPastor*
+ */
+type WordFromOurPastorSliceVariation = WordFromOurPastorSliceDefault;
+
+/**
+ * WordFromOurPastor Shared Slice
+ *
+ * - **API ID**: `word_from_our_pastor`
+ * - **Description**: WordFromOurPastor
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WordFromOurPastorSlice = prismic.SharedSlice<
+  "word_from_our_pastor",
+  WordFromOurPastorSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -737,6 +810,10 @@ declare module "@prismicio/client" {
       MainMenuSliceDefaultPrimary,
       MainMenuSliceVariation,
       MainMenuSliceDefault,
+      WordFromOurPastorSlice,
+      WordFromOurPastorSliceDefaultPrimary,
+      WordFromOurPastorSliceVariation,
+      WordFromOurPastorSliceDefault,
     };
   }
 }

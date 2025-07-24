@@ -64,11 +64,12 @@ const Hero: FC<HeroProps> = ({ slice }) => {
             </div>
 
             <div className="texture absolute inset-0 h-full scale-125 bg-[url('/grainyBgTexture.webp')] bg-cover bg-no-repeat backdrop-blur-3xl"></div>
+            <div className="texture absolute inset-0 h-full scale-125 bg-[url('/grainyBgTexture.webp')] bg-cover bg-no-repeat backdrop-blur-3xl"></div>
           </div>
 
           {/*******Content Container********/}
-          <div className="relative z-10 max-w-2xl px-8 text-center">
-            <div className="text-6xl font-bold tracking-tighter text-balance">
+          <div className="relative z-10 max-w-4xl px-8 text-center">
+            <div className="text-7xl font-black tracking-tighter text-balance capitalize">
               <PrismicRichText field={slice.primary.heading} />
             </div>
             <div className="text-afm-lightgray text-xl text-balance text-shadow-black/20 text-shadow-md">

@@ -28,7 +28,7 @@ const MainMenu: FC<MainMenuProps> = ({ slice }) => {
             quality={100}
             className="h-16 w-60"
           />
-          <div className="text-lg font-light text-white/70">
+          <div className="hidden text-lg font-light text-white/70 lg:block">
             <ul className="flex h-full gap-4">
               {slice.primary.linkitem.map((link) => (
                 <li

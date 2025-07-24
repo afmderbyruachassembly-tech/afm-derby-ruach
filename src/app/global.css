@@ -1,11 +1,16 @@
 @import "tailwindcss";
 
+* {
+    box-sizing: border-box;
+}
+
 @theme {
     --color-afm-blue: #265D97;
     --color-afm-gold: #D5AC51;
     --color-afm-gray: #D2D3D5;
     --color-afm-lightgray: #F0F0F0;
     --color-afm-red: #E33738;
+    --color-afm-card-bg: #EFF0F3;
 
     --animate-bounce: arrowBounce 1s ease-in-out infinite alternate;
 }
