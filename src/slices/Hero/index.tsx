@@ -1,8 +1,12 @@
+"use client";
 import { Bounded } from "@/app/components/bounded";
+import { useGSAP } from "@gsap/react";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import clsx from "clsx";
+import { gsap } from "gsap";
+import { SplitText } from "gsap/all";
 import Image from "next/image";
 import { FC } from "react";
 import { HiOutlineArrowLongDown } from "react-icons/hi2";
@@ -12,16 +16,45 @@ import { HiOutlineArrowLongDown } from "react-icons/hi2";
  */
 export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 
+gsap.registerPlugin(SplitText);
+
 /**
  * Component for "Hero" Slices.
  */
 const Hero: FC<HeroProps> = ({ slice }) => {
+  useGSAP(() => {
+    const split = SplitText.create(".heading", {
+      type: "lines",
+      mask: "lines",
+    });
+
+    gsap.fromTo(
+      split.lines,
+      {
+        duration: 1,
+        opacity: 0,
+        y: 100,
+        autoAlpha: 0,
+        stagger: 0.05,
+        ease: "power2.out",
+      },
+      {
+        duration: 1,
+        opacity: 1,
+        y: 0,
+        autoAlpha: 1,
+        stagger: 0.05,
+        ease: "power2.out",
+      },
+    );
+  });
+
   console.log(slice.variation);
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative overflow-hidden md:h-screen xl:h-[90vh]"
+      className="relative overflow-hidden md:h-screen xl:h-screen"
     >
       <div className="absolute -z-10 h-full w-full">
         {slice.variation !== "default" ? (
@@ -69,7 +102,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
 
           {/*******Content Container********/}
           <div className="relative z-10 max-w-4xl px-8 text-center">
-            <div className="text-7xl font-black tracking-tighter text-balance capitalize">
+            <div className="heading text-7xl font-black tracking-tighter text-balance capitalize">
               <PrismicRichText field={slice.primary.heading} />
             </div>
             <div className="text-afm-lightgray text-xl text-balance text-shadow-black/20 text-shadow-md">
