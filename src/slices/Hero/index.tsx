@@ -28,25 +28,20 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       mask: "lines",
     });
 
-    gsap.fromTo(
-      split.lines,
-      {
-        duration: 1,
-        opacity: 0,
-        y: 100,
-        autoAlpha: 0,
-        stagger: 0.05,
-        ease: "power2.out",
-      },
-      {
-        duration: 1,
-        opacity: 1,
-        y: 0,
-        autoAlpha: 1,
-        stagger: 0.05,
-        ease: "power2.out",
-      },
-    );
+    // Set initial state
+    gsap.set(split.lines, {
+      y: 100,
+      autoAlpha: 0,
+    });
+
+    // Animate to revealed state
+    gsap.to(split.lines, {
+      duration: 1,
+      y: 0,
+      autoAlpha: 1,
+      stagger: 0.05,
+      ease: "power2.out",
+    });
   });
 
   console.log(slice.variation);
