@@ -36,16 +36,50 @@ const Hero: FC<HeroProps> = ({ slice }) => {
     introTl
       .set(split.lines, {
         y: 100,
+
         opacity: 0,
       })
       .to(split.lines, {
         duration: 1,
         y: 0,
+
         opacity: 1,
-        stagger: 0.05,
+        stagger: 0.1,
         ease: "power2.out",
         delay: 0.3,
-      });
+      })
+      .from(
+        ".body",
+        {
+          y: 20,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.out",
+        },
+        "-=0.5",
+      )
+      .from(
+        ".rsvp",
+        {
+          y: 20,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.out",
+          stagger: 0.1,
+        },
+        "-=0.8",
+      )
+      .from(
+        ".cta-scroll",
+        {
+          y: -20,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.out",
+          stagger: 0.1,
+        },
+        "-=0.9",
+      );
   });
 
   console.log(slice.variation);
@@ -53,7 +87,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative overflow-hidden md:h-screen xl:h-screen"
+      className="relative overflow-hidden md:h-screen lg:h-[90vh] xl:h-[70vh]"
     >
       <div className="absolute -z-10 h-full w-full">
         {slice.variation !== "default" ? (
@@ -104,13 +138,13 @@ const Hero: FC<HeroProps> = ({ slice }) => {
             <div className="heading mb-4 text-4xl font-black tracking-tighter text-balance capitalize xl:text-7xl/tight">
               <PrismicRichText field={slice.primary.heading} />
             </div>
-            <div className="text-afm-lightgray text-xl text-balance text-shadow-black/20 text-shadow-md">
+            <div className="body text-afm-lightgray text-xl text-balance text-shadow-black/20 text-shadow-md">
               <PrismicRichText field={slice.primary.body} />
             </div>
             <div className="mt-8 flex justify-evenly text-left">
               {slice.primary.location.map((item, index) => (
                 // Render the item
-                <div key={index}>
+                <div key={index} className="rsvp">
                   <span className="text-afm-gold text-xl font-bold capitalize">
                     {" "}
                     <PrismicRichText field={item.leading} />
@@ -119,7 +153,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
                 </div>
               ))}
             </div>
-            <div className="mt-10 flex animate-[var(--animate-bounce)] flex-col items-center justify-center gap-4 text-center">
+            <div className="cta-scroll mt-10 flex animate-[var(--animate-bounce)] flex-col items-center justify-center gap-4 text-center">
               <span className="origin-center rotate-90">scroll</span>
               <span className="text-5xl">
                 <HiOutlineArrowLongDown />
