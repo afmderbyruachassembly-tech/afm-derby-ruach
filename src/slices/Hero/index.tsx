@@ -24,24 +24,28 @@ gsap.registerPlugin(SplitText);
 const Hero: FC<HeroProps> = ({ slice }) => {
   useGSAP(() => {
     const split = SplitText.create(".heading", {
-      type: "lines",
+      type: "words,lines",
+      linesClass: "line",
+      autoSplit: true,
       mask: "lines",
     });
 
-    // Set initial state
-    gsap.set(split.lines, {
-      y: 100,
-      autoAlpha: 0,
-    });
+    const introTl = gsap.timeline();
 
-    // Animate to revealed state
-    gsap.to(split.lines, {
-      duration: 1,
-      y: 0,
-      autoAlpha: 1,
-      stagger: 0.05,
-      ease: "power2.out",
-    });
+    // Set initial state
+    introTl
+      .set(split.lines, {
+        y: 100,
+        autoAlpha: 0,
+      })
+      .to(split.lines, {
+        duration: 1,
+        y: 0,
+        autoAlpha: 1,
+        stagger: 0.05,
+        ease: "power2.out",
+        delay: 0.3,
+      });
   });
 
   console.log(slice.variation);
@@ -97,7 +101,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
 
           {/*******Content Container********/}
           <div className="relative z-10 max-w-4xl px-8 text-center">
-            <div className="heading text-7xl font-black tracking-tighter text-balance capitalize">
+            <div className="heading mb-4 text-7xl/tight font-black tracking-tighter text-balance capitalize">
               <PrismicRichText field={slice.primary.heading} />
             </div>
             <div className="text-afm-lightgray text-xl text-balance text-shadow-black/20 text-shadow-md">
