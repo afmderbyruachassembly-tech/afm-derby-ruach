@@ -59,10 +59,6 @@ const BentoGridSection: FC<BentoGridSectionProps> = ({ slice }) => {
             end: "40% 80%",
             scrub: 0.3,
             invalidateOnRefresh: true,
-            markers: {
-              startColor: "yellow",
-              endColor: "purple",
-            },
           },
           opacity: 1,
           stagger: 0.1,
@@ -96,15 +92,13 @@ const BentoGridSection: FC<BentoGridSectionProps> = ({ slice }) => {
 
       gridTl.from(".bento-card", {
         scrollTrigger: {
-          trigger: ".bento-card",
-          start: "top 90%",
-          // toggleActions: "play none none reverse",
-
+          trigger: ".bento-container",
+          start: "top 80%",
           scrub: 0.9,
         },
         opacity: 0,
-        y: 40,
-        duration: 2,
+        y: 30,
+        duration: 1.2,
         ease: "power2.out",
         stagger: {
           amount: 0.8,
@@ -178,7 +172,7 @@ const BentoGridSection: FC<BentoGridSectionProps> = ({ slice }) => {
                 return (
                   <div
                     key={rowIndex}
-                    className={`grid grid-cols-3 items-stretch [--corner-radius:16px] ${
+                    className={`bento-container grid grid-cols-3 items-stretch [--corner-radius:16px] ${
                       isEvenRow
                         ? "xl:grid-cols-[2fr_1fr_1fr]"
                         : "xl:grid-cols-[1fr_1fr_2fr]"

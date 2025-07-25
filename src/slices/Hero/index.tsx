@@ -25,6 +25,7 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 const Hero: FC<HeroProps> = ({ slice }) => {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
+  const contentContainerRef = useRef(null);
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
@@ -39,6 +40,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
 
       introTl
         .set(split.lines, { y: 100, opacity: 0 })
+        .to(contentContainerRef.current, { opacity: 1, duration: 0.5 })
         .to(split.lines, {
           duration: 1,
           y: 0,
@@ -114,6 +116,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           },
           0,
         )
+
         .to(
           ".body",
           {
@@ -196,7 +199,10 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           </div>
 
           {/*******Content Container********/}
-          <div className="relative z-10 max-w-4xl px-8 text-center">
+          <div
+            ref={contentContainerRef}
+            className="relative z-10 max-w-4xl px-8 text-center opacity-0"
+          >
             <div
               ref={headingRef}
               className="heading mb-4 text-4xl leading-[115%] font-black tracking-tighter text-balance capitalize xl:text-7xl"

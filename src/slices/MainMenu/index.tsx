@@ -1,9 +1,11 @@
+"use client";
 import { Bounded } from "@/app/components/bounded";
 import Button from "@/app/components/button";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { SliceComponentProps } from "@prismicio/react";
-import { FC } from "react";
+import clsx from "clsx";
+import { FC, useEffect, useState } from "react";
 
 /**
  * Props for `MainMenu`.
@@ -14,14 +16,33 @@ export type MainMenuProps = SliceComponentProps<Content.MainMenuSlice>;
  * Component for "MainMenu" Slices.
  */
 const MainMenu: FC<MainMenuProps> = ({ slice }) => {
-  console.log(slice.primary.buttonlink.text);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <nav
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className="fixed top-0 z-10 w-full"
     >
-      <Bounded className="border-afm-blue/20 bg-afm-blue/10 rounded-2xl border px-10 py-5 backdrop-blur-sm">
+      <Bounded
+        className={clsx(
+          "rounded-2xl border px-10 py-5 backdrop-blur-sm transition-all duration-300 ease-in-out",
+          isScrolled
+            ? "border-afm-blue/20 bg-afm-blue/90"
+            : "border-afm-blue/20 bg-afm-blue/10",
+        )}
+      >
         <div className="flex items-center justify-between">
           <PrismicNextImage
             field={slice.primary.logo}
