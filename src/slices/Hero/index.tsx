@@ -36,12 +36,12 @@ const Hero: FC<HeroProps> = ({ slice }) => {
     introTl
       .set(split.lines, {
         y: 100,
-        autoAlpha: 0,
+        opacity: 0,
       })
       .to(split.lines, {
         duration: 1,
         y: 0,
-        autoAlpha: 1,
+        opacity: 1,
         stagger: 0.05,
         ease: "power2.out",
         delay: 0.3,
@@ -101,7 +101,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
 
           {/*******Content Container********/}
           <div className="relative z-10 max-w-4xl px-8 text-center">
-            <div className="heading mb-4 text-7xl/tight font-black tracking-tighter text-balance capitalize">
+            <div className="heading mb-4 text-4xl font-black tracking-tighter text-balance capitalize xl:text-7xl/tight">
               <PrismicRichText field={slice.primary.heading} />
             </div>
             <div className="text-afm-lightgray text-xl text-balance text-shadow-black/20 text-shadow-md">
