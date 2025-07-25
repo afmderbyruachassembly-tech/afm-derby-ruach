@@ -7,8 +7,9 @@ import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import clsx from "clsx";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useRef } from "react";
 import { HiOutlineArrowLongDown } from "react-icons/hi2";
 
 /**
@@ -16,78 +17,142 @@ import { HiOutlineArrowLongDown } from "react-icons/hi2";
  */
 export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 /**
  * Component for "Hero" Slices.
  */
 const Hero: FC<HeroProps> = ({ slice }) => {
+  const sectionRef = useRef(null);
+  const headingRef = useRef(null);
+
   useGSAP(() => {
-    const split = SplitText.create(".heading", {
-      type: "words,lines",
-      linesClass: "line",
-      autoSplit: true,
-      mask: "lines",
-    });
+    const ctx = gsap.context(() => {
+      const split = SplitText.create(headingRef.current, {
+        type: "words,lines",
+        linesClass: "line",
+        mask: "lines",
+      });
 
-    const introTl = gsap.timeline();
+      // Intro animation
+      const introTl = gsap.timeline();
 
-    // Set initial state
-    introTl
-      .set(split.lines, {
-        y: 100,
+      introTl
+        .set(split.lines, { y: 100, opacity: 0 })
+        .to(split.lines, {
+          duration: 1,
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          ease: "power2.out",
+          delay: 0.3,
+        })
+        .from(
+          ".body",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+          },
+          "-=0.5",
+        )
+        .from(
+          ".rsvp",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+            stagger: 0.1,
+          },
+          "-=0.8",
+        )
+        .from(
+          ".cta-scroll",
+          {
+            y: -20,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+            stagger: 0.1,
+          },
+          "-=0.9",
+        );
 
-        opacity: 0,
-      })
-      .to(split.lines, {
-        duration: 1,
-        y: 0,
-
-        opacity: 1,
-        stagger: 0.1,
+      // Scale image on scroll
+      gsap.to(".hero-img", {
+        scrollTrigger: {
+          trigger: ".hero-img",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.2,
+        },
+        scale: 1.8,
         ease: "power2.out",
-        delay: 0.3,
-      })
-      .from(
-        ".body",
-        {
-          y: 20,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-        },
-        "-=0.5",
-      )
-      .from(
-        ".rsvp",
-        {
-          y: 20,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          stagger: 0.1,
-        },
-        "-=0.8",
-      )
-      .from(
-        ".cta-scroll",
-        {
-          y: -20,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          stagger: 0.1,
-        },
-        "-=0.9",
-      );
-  });
+        duration: 2,
+      });
 
-  console.log(slice.variation);
+      // Outro animation on scroll
+      const outro = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".hero-img",
+          start: "55% 50%",
+          end: "bottom top",
+          scrub: 1.2,
+        },
+      });
+
+      outro
+        .to(
+          ".heading",
+          {
+            opacity: 0,
+            y: -200,
+            duration: 0.7,
+            ease: "power2.out",
+          },
+          0,
+        )
+        .to(
+          ".body",
+          {
+            y: -100,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+          },
+          0,
+        )
+        .to(
+          ".rsvp",
+          {
+            y: -100,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+            stagger: 0.1,
+          },
+          0,
+        )
+        .to(".cta-scroll", {
+          y: 100,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.out",
+          stagger: 0.1,
+        });
+    }, sectionRef); // 👈 This limits all selectors to this component only
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative overflow-hidden md:h-screen lg:h-[90vh] xl:h-[70vh]"
+      className="relative top-0 -z-10 overflow-hidden md:h-screen lg:h-screen xl:h-screen 2xl:h-[90vh]"
     >
       <div className="absolute -z-10 h-full w-full">
         {slice.variation !== "default" ? (
@@ -105,7 +170,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           <PrismicNextImage
             field={slice.primary.bgimage}
             fill
-            className="object-cover"
+            className="hero-img object-cover"
             priority
           />
         </div>
@@ -114,9 +179,6 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       <Bounded className="relative h-full">
         <div className="relative mx-auto flex h-full max-w-[70%] flex-col items-center justify-center overflow-hidden rounded-2xl text-white">
           <div className="mix-blend-hard-light">
-            {/*********Gradient********/}
-            {/*<div className="absolute inset-0 bg-[conic-gradient(from_45deg,_#265D97,_#265D97,_#E33738,_#E33738,_#265D97,_#265D97,_#265D97,_#265D97)] backdrop-blur-3xl" />*/}
-
             {/******Texture*******/}
             <div className="texture absolute inset-0 mix-blend-multiply backdrop-blur-3xl">
               <Image
@@ -135,7 +197,10 @@ const Hero: FC<HeroProps> = ({ slice }) => {
 
           {/*******Content Container********/}
           <div className="relative z-10 max-w-4xl px-8 text-center">
-            <div className="heading mb-4 text-4xl font-black tracking-tighter text-balance capitalize xl:text-7xl/tight">
+            <div
+              ref={headingRef}
+              className="heading mb-4 text-4xl leading-[115%] font-black tracking-tighter text-balance capitalize xl:text-7xl"
+            >
               <PrismicRichText field={slice.primary.heading} />
             </div>
             <div className="body text-afm-lightgray text-xl text-balance text-shadow-black/20 text-shadow-md">

@@ -19,7 +19,7 @@ const MainMenu: FC<MainMenuProps> = ({ slice }) => {
     <nav
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="absolute top-8 z-10 w-full"
+      className="fixed top-0 z-10 w-full"
     >
       <Bounded className="border-afm-blue/20 bg-afm-blue/10 rounded-2xl border px-10 py-5 backdrop-blur-sm">
         <div className="flex items-center justify-between">
