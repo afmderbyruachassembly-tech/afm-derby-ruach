@@ -13,10 +13,7 @@ function Button({ children, link, className }: ButtonProps) {
   return (
     <PrismicNextLink
       field={link}
-      className={clsx(
-        "bg-[#265D97] text-white px-4 py-2 inline-block",
-        className,
-      )}
+      className={clsx("inline-block px-4 py-2", className)}
     >
       {children}
     </PrismicNextLink>

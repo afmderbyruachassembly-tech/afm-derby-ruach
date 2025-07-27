@@ -17,10 +17,22 @@ export type MainMenuProps = SliceComponentProps<Content.MainMenuSlice>;
  */
 const MainMenu: FC<MainMenuProps> = ({ slice }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState("down");
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
+    console.log(lastScrollY, window.scrollY);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+
+      // Only update direction if there's a significant change
+      // This prevents false "up" direction when scrolling stops
+      if (Math.abs(currentScrollY - lastScrollY) > 5) {
+        const newDirection = currentScrollY > lastScrollY ? "down" : "up";
+        setScrollDirection(newDirection);
+      }
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -28,12 +40,18 @@ const MainMenu: FC<MainMenuProps> = ({ slice }) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [lastScrollY]);
   return (
     <nav
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="fixed top-0 z-10 w-full"
+      className={clsx(
+        "fixed xl:top-10 z-10 w-full transition-transform duration-1000 ease-in-out",
+        // Hide when scrolling up (except at the very top of the page)
+        scrollDirection === "down" && lastScrollY > 100
+          ? "-translate-y-[200%]"
+          : "translate-y-0",
+      )}
     >
       <Bounded
         className={clsx(
@@ -69,7 +87,7 @@ const MainMenu: FC<MainMenuProps> = ({ slice }) => {
           </div>
           <Button
             link={slice.primary.buttonlink}
-            className="rounded-xl px-11 py-3 text-lg capitalize"
+            className="border-afm-gray bg-afm-gray text-afm-blue rounded-xl border px-11 py-3 text-lg font-bold capitalize"
           >
             {slice.primary.buttontext}
           </Button>

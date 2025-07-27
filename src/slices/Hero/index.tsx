@@ -36,10 +36,11 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       });
 
       // Intro animation
-      const introTl = gsap.timeline();
+      const introTl = gsap.timeline({ paused: true });
 
       introTl
         .set(split.lines, { y: 100, opacity: 0 })
+        .set(".body, .rsvp, .cta-scroll", { y: 20, opacity: 0 })
         .to(contentContainerRef.current, { opacity: 1, duration: 0.5 })
         .to(split.lines, {
           duration: 1,
@@ -49,38 +50,52 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           ease: "power2.out",
           delay: 0.3,
         })
-        .from(
+        .to(
           ".body",
           {
-            y: 20,
-            opacity: 0,
+            y: 0,
+            opacity: 1,
             duration: 1,
             ease: "power2.out",
           },
           "-=0.5",
         )
-        .from(
+        .to(
           ".rsvp",
           {
-            y: 20,
-            opacity: 0,
+            y: 0,
+            opacity: 1,
             duration: 1,
             ease: "power2.out",
             stagger: 0.1,
           },
           "-=0.8",
         )
-        .from(
+        .to(
           ".cta-scroll",
           {
-            y: -20,
-            opacity: 0,
+            y: 0,
+            opacity: 1,
             duration: 1,
             ease: "power2.out",
-            stagger: 0.1,
           },
           "-=0.9",
         );
+
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top 80%", // Trigger when the top of the section is 80% from the top of viewport
+        onEnter: () => introTl.play(),
+        once: true, // Only trigger once
+      });
+
+      // If the section is already in viewport when the page loads, play the animation immediately
+      if (
+        sectionRef.current &&
+        ScrollTrigger.isInViewport(sectionRef.current)
+      ) {
+        introTl.play();
+      }
 
       // Scale image on scroll
       gsap.to(".hero-img", {
@@ -155,7 +170,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       ref={sectionRef}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative top-0 -z-10 overflow-hidden md:h-screen lg:h-screen xl:h-screen 2xl:h-[90vh]"
+      className="relative top-0 -z-10 overflow-hidden h-screen md:h-screen lg:h-screen xl:h-screen 2xl:h-[90vh]"
     >
       <div className="absolute -z-10 h-full w-full">
         {slice.variation !== "default" ? (
@@ -180,7 +195,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       </div>
 
       <Bounded className="relative h-full">
-        <div className="relative mx-auto flex h-full max-w-[70%] flex-col items-center justify-center overflow-hidden rounded-2xl text-white">
+        <div className="relative mx-auto flex h-full xl:max-w-[70%] flex-col items-center justify-center overflow-hidden rounded-2xl text-white">
           <div className="mix-blend-hard-light">
             {/******Texture*******/}
             <div className="texture absolute inset-0 mix-blend-multiply backdrop-blur-3xl">
@@ -189,7 +204,6 @@ const Hero: FC<HeroProps> = ({ slice }) => {
                 alt=""
                 fill
                 priority
-                sizes="100vw"
                 style={{ objectFit: "cover" }}
               />
             </div>
@@ -201,15 +215,15 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           {/*******Content Container********/}
           <div
             ref={contentContainerRef}
-            className="relative z-10 max-w-4xl px-8 text-center opacity-0"
+            className="relative z-10 pt-10 w-full md:px-4 lg:max-w-2xl xl:max-w-4xl lg:px-6 xl:px-8  text-center opacity-0"
           >
             <div
               ref={headingRef}
-              className="heading mb-4 text-4xl leading-[115%] font-black tracking-tighter text-balance capitalize xl:text-7xl"
+              className="heading mb-4 lg:text-6xl text-5xl leading-[110%] xl:leading-[115%] font-black tracking-tighter text-balance capitalize xl:text-7xl"
             >
               <PrismicRichText field={slice.primary.heading} />
             </div>
-            <div className="body text-afm-lightgray text-xl text-balance text-shadow-black/20 text-shadow-md">
+            <div className="body text-afm-lightgray text-lg text-balance text-shadow-black/20 text-shadow-md">
               <PrismicRichText field={slice.primary.body} />
             </div>
             <div className="mt-8 flex justify-evenly text-left">

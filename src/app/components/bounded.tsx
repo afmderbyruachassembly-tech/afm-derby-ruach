@@ -9,7 +9,7 @@ export const Bounded = ({
   className?: string;
 }) => {
   return (
-    <div className={clsx("relative max-w-7xl mx-auto", className)}>
+    <div className={clsx("relative w-full xl:max-w-7xl mx-auto", className)}>
       {children}
     </div>
   );

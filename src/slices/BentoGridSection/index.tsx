@@ -7,14 +7,7 @@ import { gsap } from "gsap";
 import { SplitText } from "gsap/all";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FC, useRef } from "react";
-import {
-  LuBookOpen,
-  LuChurch,
-  LuCompass,
-  LuHeart,
-  LuShield,
-  LuUsers,
-} from "react-icons/lu";
+import renderIcon from "@/utils/render-icon";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 /**
  * Props for `BentoGridSection`.
@@ -22,14 +15,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 export type BentoGridSectionProps =
   SliceComponentProps<Content.BentoGridSectionSlice>;
 
-const iconMap = {
-  LuHeart: LuHeart,
-  LuShield: LuShield,
-  LuBookOpen: LuBookOpen,
-  LuChurch: LuChurch,
-  LuUsers: LuUsers,
-  LuCompass: LuCompass,
-};
+
 
 /**
  * Component for "BentoGridSection" Slices.
@@ -76,16 +62,39 @@ const BentoGridSection: FC<BentoGridSectionProps> = ({ slice }) => {
           duration: 1,
           ease: "power2.out",
         });
-
       const handleResize = () => {
-        split.revert(); // Remove old spans
+        // Kill existing animations targeting split words
+        gsap.killTweensOf(split.words);
+
+        // Revert the old split
+        split.revert();
+
+        // Create new split
         split = SplitText.create(headingRef.current, {
           type: "words",
           linesClass: "line",
           mask: "words",
         });
 
-        ScrollTrigger.refresh(); // Recalculate scroll positions
+        // Reset initial state for new words
+        gsap.set(split.words, { opacity: 0.3 });
+
+        // Recreate the animation for the new words
+        gsap.to(split.words, {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            end: "40% 80%",
+            scrub: 0.3,
+            invalidateOnRefresh: true,
+          },
+          opacity: 1,
+          stagger: 0.1,
+          ease: "power2.out",
+        });
+
+        // Refresh ScrollTrigger
+        ScrollTrigger.refresh();
       };
 
       window.addEventListener("resize", handleResize);
@@ -94,6 +103,7 @@ const BentoGridSection: FC<BentoGridSectionProps> = ({ slice }) => {
         scrollTrigger: {
           trigger: ".bento-container",
           start: "top 80%",
+          end: "bottom 70%",
           scrub: 0.9,
         },
         opacity: 0,
@@ -115,27 +125,17 @@ const BentoGridSection: FC<BentoGridSectionProps> = ({ slice }) => {
 
     return () => ctx.revert();
   });
-  const renderIcon = (iconName: string) => {
-    const IconComponent = iconMap[iconName as keyof typeof iconMap];
 
-    if (IconComponent) {
-      return <IconComponent className="mb-4 h-6 w-6 text-gray-400" />;
-    }
-
-    // Fallback if icon is not found
-    console.warn(`Icon "${iconName}" not found in iconMap`);
-    return <div className="mb-4 h-8 w-8 rounded bg-gray-300" />;
-  };
   return (
     <section ref={sectionRef}>
       <Bounded className="bento-grid-section border-orange-700 py-20">
         <div
           ref={headingRef}
-          className="m-auto max-w-4xl text-center text-6xl leading-[115%] font-black tracking-tighter text-balance capitalize"
+          className="m-auto max-w-4xl text-center text-4xl xl:text-6xl leading-[115%] font-black tracking-tighter text-balance capitalize"
         >
           <PrismicRichText field={slice.primary.heading} />
         </div>
-        <div className="body m-auto mt-4 max-w-5xl text-center text-balance">
+        <div className="body m-auto px-4 mt-4 max-w-5xl text-center text-balance">
           <PrismicRichText field={slice.primary.body} />
         </div>
 
@@ -157,7 +157,7 @@ const BentoGridSection: FC<BentoGridSectionProps> = ({ slice }) => {
               </div>
             ))}
           </div>
-          <div className="hidden xl:block">
+          <div className="bento-container hidden xl:block">
             {/* Group cards into rows of 3 */}
             {Array.from(
               { length: Math.ceil(slice.primary.card.length / 3) },
@@ -172,7 +172,7 @@ const BentoGridSection: FC<BentoGridSectionProps> = ({ slice }) => {
                 return (
                   <div
                     key={rowIndex}
-                    className={`bento-container grid grid-cols-3 items-stretch [--corner-radius:16px] ${
+                    className={`grid grid-cols-3 items-stretch [--corner-radius:16px] ${
                       isEvenRow
                         ? "xl:grid-cols-[2fr_1fr_1fr]"
                         : "xl:grid-cols-[1fr_1fr_2fr]"
