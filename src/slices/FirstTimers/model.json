@@ -1,0 +1,63 @@
+{
+  "id": "first_timers",
+  "type": "SharedSlice",
+  "name": "FirstTimers",
+  "description": "FirstTimers",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "heading",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "heading4"
+          }
+        },
+        "card": {
+          "type": "Group",
+          "config": {
+            "label": "card",
+            "repeat": true,
+            "fields": {
+              "cardtitle": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "cardTitle",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "single": "heading5"
+                }
+              },
+              "cardimage": {
+                "type": "Image",
+                "config": {
+                  "label": "cardImage",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "cardcontent": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "cardContent",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "multi": "heading5,strong,list-item,o-list-item,em,hyperlink"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

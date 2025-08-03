@@ -103,30 +103,94 @@ export type FooterDocument<Lang extends string = string> =
     Lang
   >;
 
-type PageDocumentDataSlicesSlice =
+type HomeDocumentDataSlicesSlice =
+  | GallerySlice
+  | FaqsSlice
+  | FooterSlice
+  | FirstTimersSlice
   | WordFromOurPastorSlice
   | BentoGridSectionSlice
   | HeroSlice
-  | FooterSlice
   | MainMenuSlice;
 
 /**
- * Content for Page documents
+ * Content for Home documents
+ */
+interface HomeDocumentData {
+  /**
+   * Slice Zone field in *Home*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<HomeDocumentDataSlicesSlice> /**
+   * Meta Title field in *Home*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: home.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Home*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: home.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Home*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Home document from Prismic
+ *
+ * - **API ID**: `home`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HomeDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
+
+type PageDocumentDataSlicesSlice = never;
+
+/**
+ * Content for page documents
  */
 interface PageDocumentData {
   /**
-   * Title field in *Page*
+   * dynamic page field in *page*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: page.title
+   * - **API ID Path**: page.dynamic_page
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  title: prismic.RichTextField;
+  dynamic_page: prismic.KeyTextField;
 
   /**
-   * Slice Zone field in *Page*
+   * Slice Zone field in *page*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -135,7 +199,7 @@ interface PageDocumentData {
    * - **Documentation**: https://prismic.io/docs/slices
    */
   slices: prismic.SliceZone<PageDocumentDataSlicesSlice> /**
-   * Meta Title field in *Page*
+   * Meta Title field in *page*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -146,7 +210,7 @@ interface PageDocumentData {
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Page*
+   * Meta Description field in *page*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -157,7 +221,7 @@ interface PageDocumentData {
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *Page*
+   * Meta Image field in *page*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -169,7 +233,7 @@ interface PageDocumentData {
 }
 
 /**
- * Page document from Prismic
+ * page document from Prismic
  *
  * - **API ID**: `page`
  * - **Repeatable**: `true`
@@ -180,7 +244,7 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-export type AllDocumentTypes = FooterDocument | PageDocument;
+export type AllDocumentTypes = FooterDocument | HomeDocument | PageDocument;
 
 /**
  * Item in *BentoGridSection → Default → Primary → card*
@@ -379,6 +443,193 @@ export type BentoGridSectionSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *Faqs → Default → Primary → QnAs*
+ */
+export interface FaqsSliceDefaultPrimaryQnasItem {
+  /**
+   * heading field in *Faqs → Default → Primary → QnAs*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.default.primary.qnas[].heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * body field in *Faqs → Default → Primary → QnAs*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.default.primary.qnas[].body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Faqs → Default → Primary*
+ */
+export interface FaqsSliceDefaultPrimary {
+  /**
+   * heading field in *Faqs → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * body field in *Faqs → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * link field in *Faqs → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.default.primary.link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * QnAs field in *Faqs → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faqs.default.primary.qnas[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  qnas: prismic.GroupField<Simplify<FaqsSliceDefaultPrimaryQnasItem>>;
+}
+
+/**
+ * Default variation for Faqs Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FaqsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FaqsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Faqs*
+ */
+type FaqsSliceVariation = FaqsSliceDefault;
+
+/**
+ * Faqs Shared Slice
+ *
+ * - **API ID**: `faqs`
+ * - **Description**: Faqs
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FaqsSlice = prismic.SharedSlice<"faqs", FaqsSliceVariation>;
+
+/**
+ * Item in *FirstTimers → Default → Primary → card*
+ */
+export interface FirstTimersSliceDefaultPrimaryCardItem {
+  /**
+   * cardTitle field in *FirstTimers → Default → Primary → card*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: first_timers.default.primary.card[].cardtitle
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  cardtitle: prismic.RichTextField;
+
+  /**
+   * cardImage field in *FirstTimers → Default → Primary → card*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: first_timers.default.primary.card[].cardimage
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  cardimage: prismic.ImageField<never>;
+
+  /**
+   * cardContent field in *FirstTimers → Default → Primary → card*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: first_timers.default.primary.card[].cardcontent
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  cardcontent: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *FirstTimers → Default → Primary*
+ */
+export interface FirstTimersSliceDefaultPrimary {
+  /**
+   * heading field in *FirstTimers → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: first_timers.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * card field in *FirstTimers → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: first_timers.default.primary.card[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  card: prismic.GroupField<Simplify<FirstTimersSliceDefaultPrimaryCardItem>>;
+}
+
+/**
+ * Default variation for FirstTimers Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FirstTimersSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FirstTimersSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FirstTimers*
+ */
+type FirstTimersSliceVariation = FirstTimersSliceDefault;
+
+/**
+ * FirstTimers Shared Slice
+ *
+ * - **API ID**: `first_timers`
+ * - **Description**: FirstTimers
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FirstTimersSlice = prismic.SharedSlice<
+  "first_timers",
+  FirstTimersSliceVariation
+>;
+
+/**
  * Primary content in *Footer → Default → Primary*
  */
 export interface FooterSliceDefaultPrimary {
@@ -429,6 +680,76 @@ type FooterSliceVariation = FooterSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type FooterSlice = prismic.SharedSlice<"footer", FooterSliceVariation>;
+
+/**
+ * Item in *Gallery → Default → Primary → gallery*
+ */
+export interface GallerySliceDefaultPrimaryGalleryItem {
+  /**
+   * image field in *Gallery → Default → Primary → gallery*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.default.primary.gallery[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *Gallery → Default → Primary*
+ */
+export interface GallerySliceDefaultPrimary {
+  /**
+   * heading field in *Gallery → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * gallery field in *Gallery → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.default.primary.gallery[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  gallery: prismic.GroupField<Simplify<GallerySliceDefaultPrimaryGalleryItem>>;
+}
+
+/**
+ * Default variation for Gallery Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type GallerySliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<GallerySliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Gallery*
+ */
+type GallerySliceVariation = GallerySliceDefault;
+
+/**
+ * Gallery Shared Slice
+ *
+ * - **API ID**: `gallery`
+ * - **Description**: Gallery
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type GallerySlice = prismic.SharedSlice<
+  "gallery",
+  GallerySliceVariation
+>;
 
 /**
  * Item in *Hero → Default → Primary → location*
@@ -782,6 +1103,9 @@ declare module "@prismicio/client" {
       FooterDocument,
       FooterDocumentData,
       FooterDocumentDataSlicesSlice,
+      HomeDocument,
+      HomeDocumentData,
+      HomeDocumentDataSlicesSlice,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
@@ -794,10 +1118,25 @@ declare module "@prismicio/client" {
       BentoGridSectionSliceVariation,
       BentoGridSectionSliceDefault,
       BentoGridSectionSliceWithoutGrid,
+      FaqsSlice,
+      FaqsSliceDefaultPrimaryQnasItem,
+      FaqsSliceDefaultPrimary,
+      FaqsSliceVariation,
+      FaqsSliceDefault,
+      FirstTimersSlice,
+      FirstTimersSliceDefaultPrimaryCardItem,
+      FirstTimersSliceDefaultPrimary,
+      FirstTimersSliceVariation,
+      FirstTimersSliceDefault,
       FooterSlice,
       FooterSliceDefaultPrimary,
       FooterSliceVariation,
       FooterSliceDefault,
+      GallerySlice,
+      GallerySliceDefaultPrimaryGalleryItem,
+      GallerySliceDefaultPrimary,
+      GallerySliceVariation,
+      GallerySliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimaryLocationItem,
       HeroSliceDefaultPrimary,

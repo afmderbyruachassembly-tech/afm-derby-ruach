@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
-import { Bounded } from "@/app/components/bounded";
+import { Bounded } from "@/components/bounded";
 
 /**
  * Props for `Footer`.

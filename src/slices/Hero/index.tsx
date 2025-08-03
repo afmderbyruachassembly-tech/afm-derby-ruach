@@ -1,5 +1,5 @@
 "use client";
-import { Bounded } from "@/app/components/bounded";
+import { Bounded } from "@/components/bounded";
 import { useGSAP } from "@gsap/react";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
@@ -181,7 +181,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
 
         <div
           className={clsx(
-            "absolute inset-0 h-full w-full scale-200",
+            "absolute inset-0 h-full w-full",
             slice.variation !== "default" ? "opacity-10" : "opacity-100",
           )}
         >
@@ -219,7 +219,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           >
             <div
               ref={headingRef}
-              className="heading mb-4 lg:text-6xl text-5xl leading-[110%] xl:leading-[115%] font-black tracking-tighter text-balance capitalize xl:text-7xl"
+              className="heading mb-4 lg:text-6xl text-4xl leading-[110%] xl:leading-[115%] font-black tracking-tighter text-balance capitalize xl:text-7xl"
             >
               <PrismicRichText field={slice.primary.heading} />
             </div>

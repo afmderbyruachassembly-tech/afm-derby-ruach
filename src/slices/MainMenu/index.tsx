@@ -1,6 +1,6 @@
 "use client";
-import { Bounded } from "@/app/components/bounded";
-import Button from "@/app/components/button";
+import { Bounded } from "@/components/bounded";
+import Button from "@/components/button";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { SliceComponentProps } from "@prismicio/react";
@@ -46,7 +46,7 @@ const MainMenu: FC<MainMenuProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={clsx(
-        "fixed xl:top-10 z-10 w-full transition-transform duration-1000 ease-in-out",
+        "fixed z-50 w-full transition-transform duration-1000 ease-in-out xl:top-10",
         // Hide when scrolling up (except at the very top of the page)
         scrollDirection === "down" && lastScrollY > 100
           ? "-translate-y-[200%]"
@@ -87,7 +87,7 @@ const MainMenu: FC<MainMenuProps> = ({ slice }) => {
           </div>
           <Button
             link={slice.primary.buttonlink}
-            className="border-afm-gray bg-afm-gray text-afm-blue rounded-xl border px-11 py-3 text-lg font-bold capitalize"
+            className="border-afm-gray bg-afm-gray text-afm-blue hidden rounded-xl border px-11 py-3 text-lg font-bold capitalize lg:block"
           >
             {slice.primary.buttontext}
           </Button>

@@ -4,7 +4,10 @@ import dynamic from "next/dynamic";
 
 export const components = {
   bento_grid_section: dynamic(() => import("./BentoGridSection")),
+  faqs: dynamic(() => import("./Faqs")),
+  first_timers: dynamic(() => import("./FirstTimers")),
   footer: dynamic(() => import("./Footer")),
+  gallery: dynamic(() => import("./Gallery")),
   hero: dynamic(() => import("./Hero")),
   main_menu: dynamic(() => import("./MainMenu")),
   word_from_our_pastor: dynamic(() => import("./WordFromOurPastor")),

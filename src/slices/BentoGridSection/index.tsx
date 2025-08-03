@@ -1,5 +1,5 @@
 "use client";
-import { Bounded } from "@/app/components/bounded";
+import { Bounded } from "@/components/bounded";
 import { useGSAP } from "@gsap/react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";

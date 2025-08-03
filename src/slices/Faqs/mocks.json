@@ -1,0 +1,78 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading5",
+						"content": {
+							"text": "Needs"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Aliquip magna voluptate ex elit mollit ex aliquip sit deserunt excepteur consectetur adipisicing eiusmod. Consequat ullamco enim officia dolore eu eiusmod excepteur id cillum nulla sint pariatur."
+						}
+					}
+				]
+			},
+			"link": {
+				"key": "7b7e15e1-ee80-4b5f-81de-6a28c8eb7015",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "symbol"
+				}
+			},
+			"qnas": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"heading",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading6",
+											"content": {
+												"text": "Shelf"
+											}
+										}
+									]
+								}
+							],
+							[
+								"body",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Ipsum exercitation incididunt nisi cillum dolor ea consectetur. Esse excepteur cupidatat aliqua consectetur Lorem cillum reprehenderit do occaecat ex ad ullamco cillum laboris. Veniam nulla voluptate dolor ipsum proident tempor sunt reprehenderit sint Lorem laboris tempor magna."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

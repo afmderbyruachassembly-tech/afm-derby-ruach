@@ -1,29 +1,41 @@
 {
   "format": "page",
-  "id": "page",
-  "label": "page",
-  "repeatable": true,
+  "id": "home",
+  "label": "Home",
+  "repeatable": false,
   "status": true,
   "json": {
     "Main": {
-      "uid": {
-        "type": "UID",
-        "config": {
-          "label": "UID"
-        }
-      },
-      "dynamic_page": {
-        "type": "Text",
-        "config": {
-          "label": "dynamic page",
-          "placeholder": ""
-        }
-      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "gallery": {
+              "type": "SharedSlice"
+            },
+            "faqs": {
+              "type": "SharedSlice"
+            },
+            "footer": {
+              "type": "SharedSlice"
+            },
+            "first_timers": {
+              "type": "SharedSlice"
+            },
+            "word_from_our_pastor": {
+              "type": "SharedSlice"
+            },
+            "bento_grid_section": {
+              "type": "SharedSlice"
+            },
+            "hero": {
+              "type": "SharedSlice"
+            },
+            "main_menu": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },
