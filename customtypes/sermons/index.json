@@ -1,14 +1,8 @@
 {
   "format": "page",
-  "id": "page",
+  "id": "sermons",
   "json": {
     "Main": {
-      "uid": {
-        "type": "UID",
-        "config": {
-          "label": "UID"
-        }
-      },
       "slices": {
         "config": {
           "choices": {}
@@ -45,7 +39,7 @@
       }
     }
   },
-  "label": "page",
-  "repeatable": true,
+  "label": "sermons",
+  "repeatable": false,
   "status": true
 }

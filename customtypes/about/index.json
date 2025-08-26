@@ -1,7 +1,7 @@
 {
   "format": "page",
-  "id": "home",
-  "label": "home",
+  "id": "about",
+  "label": "about",
   "repeatable": false,
   "status": true,
   "json": {
@@ -11,28 +11,7 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "gallery": {
-              "type": "SharedSlice"
-            },
-            "faqs": {
-              "type": "SharedSlice"
-            },
-            "footer": {
-              "type": "SharedSlice"
-            },
-            "first_timers": {
-              "type": "SharedSlice"
-            },
-            "word_from_our_pastor": {
-              "type": "SharedSlice"
-            },
-            "bento_grid_section": {
-              "type": "SharedSlice"
-            },
             "hero": {
-              "type": "SharedSlice"
-            },
-            "main_menu": {
               "type": "SharedSlice"
             }
           }

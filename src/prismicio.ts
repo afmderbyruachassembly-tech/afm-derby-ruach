@@ -16,7 +16,11 @@ export const repositoryName =
  * The project's Prismic route resolvers. This list determines a Prismic document's URL.
  */
 const routes: Route[] = [
-  { type: "home", uid: "home", path: "/" },
+  { type: "home", path: "/" },
+  { type: "about", path: "/about" },
+  { type: "ministries", path: "/ministries" },
+  { type: "calendar", path: "/calendar" },
+  { type: "sermons", path: "/sermons" },
   { type: "page", path: "/:uid" },
 ];
 

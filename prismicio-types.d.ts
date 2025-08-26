@@ -69,37 +69,129 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type FooterDocumentDataSlicesSlice = FooterSlice;
+type AboutDocumentDataSlicesSlice = HeroSlice;
 
 /**
- * Content for footer documents
+ * Content for about documents
  */
-interface FooterDocumentData {
+interface AboutDocumentData {
   /**
-   * Slice Zone field in *footer*
+   * Slice Zone field in *about*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: footer.slices[]
+   * - **API ID Path**: about.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/slices
    */
-  slices: prismic.SliceZone<FooterDocumentDataSlicesSlice>;
+  slices: prismic.SliceZone<AboutDocumentDataSlicesSlice> /**
+   * Meta Title field in *about*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: about.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *about*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: about.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *about*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
 }
 
 /**
- * footer document from Prismic
+ * about document from Prismic
  *
- * - **API ID**: `footer`
+ * - **API ID**: `about`
  * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type FooterDocument<Lang extends string = string> =
+export type AboutDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
+
+type CalendarDocumentDataSlicesSlice = CalendarHeroSlice;
+
+/**
+ * Content for calendar documents
+ */
+interface CalendarDocumentData {
+  /**
+   * Slice Zone field in *calendar*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: calendar.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<CalendarDocumentDataSlicesSlice> /**
+   * Meta Title field in *calendar*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: calendar.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *calendar*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: calendar.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *calendar*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: calendar.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * calendar document from Prismic
+ *
+ * - **API ID**: `calendar`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CalendarDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
-    Simplify<FooterDocumentData>,
-    "footer",
+    Simplify<CalendarDocumentData>,
+    "calendar",
     Lang
   >;
 
@@ -114,11 +206,11 @@ type HomeDocumentDataSlicesSlice =
   | MainMenuSlice;
 
 /**
- * Content for Home documents
+ * Content for home documents
  */
 interface HomeDocumentData {
   /**
-   * Slice Zone field in *Home*
+   * Slice Zone field in *home*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -127,7 +219,7 @@ interface HomeDocumentData {
    * - **Documentation**: https://prismic.io/docs/slices
    */
   slices: prismic.SliceZone<HomeDocumentDataSlicesSlice> /**
-   * Meta Title field in *Home*
+   * Meta Title field in *home*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -138,7 +230,7 @@ interface HomeDocumentData {
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Home*
+   * Meta Description field in *home*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -149,7 +241,7 @@ interface HomeDocumentData {
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *Home*
+   * Meta Image field in *home*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -161,7 +253,7 @@ interface HomeDocumentData {
 }
 
 /**
- * Home document from Prismic
+ * home document from Prismic
  *
  * - **API ID**: `home`
  * - **Repeatable**: `false`
@@ -172,23 +264,124 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
+type MinistriesDocumentDataSlicesSlice = never;
+
+/**
+ * Content for ministries documents
+ */
+interface MinistriesDocumentData {
+  /**
+   * Slice Zone field in *ministries*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ministries.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<MinistriesDocumentDataSlicesSlice> /**
+   * Meta Title field in *ministries*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: ministries.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *ministries*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: ministries.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *ministries*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ministries.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * ministries document from Prismic
+ *
+ * - **API ID**: `ministries`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MinistriesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<MinistriesDocumentData>,
+    "ministries",
+    Lang
+  >;
+
+/**
+ * Content for nav documents
+ */
+interface NavDocumentData {
+  /**
+   * logo field in *nav*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nav.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  logo: prismic.ImageField<never>;
+
+  /**
+   * link_item field in *nav*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nav.link_item
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link_item: prismic.Repeatable<
+    prismic.LinkField<
+      string,
+      string,
+      unknown,
+      prismic.FieldState,
+      "Primary" | "Secondary" | "Tertiary"
+    >
+  >;
+}
+
+/**
+ * nav document from Prismic
+ *
+ * - **API ID**: `nav`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NavDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<NavDocumentData>, "nav", Lang>;
+
 type PageDocumentDataSlicesSlice = never;
 
 /**
  * Content for page documents
  */
 interface PageDocumentData {
-  /**
-   * dynamic page field in *page*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: page.dynamic_page
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  dynamic_page: prismic.KeyTextField;
-
   /**
    * Slice Zone field in *page*
    *
@@ -244,7 +437,79 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-export type AllDocumentTypes = FooterDocument | HomeDocument | PageDocument;
+type SermonsDocumentDataSlicesSlice = never;
+
+/**
+ * Content for sermons documents
+ */
+interface SermonsDocumentData {
+  /**
+   * Slice Zone field in *sermons*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sermons.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<SermonsDocumentDataSlicesSlice> /**
+   * Meta Title field in *sermons*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: sermons.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *sermons*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: sermons.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *sermons*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sermons.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * sermons document from Prismic
+ *
+ * - **API ID**: `sermons`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SermonsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SermonsDocumentData>,
+    "sermons",
+    Lang
+  >;
+
+export type AllDocumentTypes =
+  | AboutDocument
+  | CalendarDocument
+  | HomeDocument
+  | MinistriesDocument
+  | NavDocument
+  | PageDocument
+  | SermonsDocument;
 
 /**
  * Item in *BentoGridSection → Default → Primary → card*
@@ -440,6 +705,61 @@ type BentoGridSectionSliceVariation =
 export type BentoGridSectionSlice = prismic.SharedSlice<
   "bento_grid_section",
   BentoGridSectionSliceVariation
+>;
+
+/**
+ * Primary content in *CalendarHero → Default → Primary*
+ */
+export interface CalendarHeroSliceDefaultPrimary {
+  /**
+   * heading field in *CalendarHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: calendar_hero.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * body field in *CalendarHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: calendar_hero.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body: prismic.RichTextField;
+}
+
+/**
+ * Default variation for CalendarHero Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CalendarHeroSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CalendarHeroSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CalendarHero*
+ */
+type CalendarHeroSliceVariation = CalendarHeroSliceDefault;
+
+/**
+ * CalendarHero Shared Slice
+ *
+ * - **API ID**: `calendar_hero`
+ * - **Description**: CalendarHero
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CalendarHeroSlice = prismic.SharedSlice<
+  "calendar_hero",
+  CalendarHeroSliceVariation
 >;
 
 /**
@@ -1100,15 +1420,26 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
-      FooterDocument,
-      FooterDocumentData,
-      FooterDocumentDataSlicesSlice,
+      AboutDocument,
+      AboutDocumentData,
+      AboutDocumentDataSlicesSlice,
+      CalendarDocument,
+      CalendarDocumentData,
+      CalendarDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
+      MinistriesDocument,
+      MinistriesDocumentData,
+      MinistriesDocumentDataSlicesSlice,
+      NavDocument,
+      NavDocumentData,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      SermonsDocument,
+      SermonsDocumentData,
+      SermonsDocumentDataSlicesSlice,
       AllDocumentTypes,
       BentoGridSectionSlice,
       BentoGridSectionSliceDefaultPrimaryCardItem,
@@ -1118,6 +1449,10 @@ declare module "@prismicio/client" {
       BentoGridSectionSliceVariation,
       BentoGridSectionSliceDefault,
       BentoGridSectionSliceWithoutGrid,
+      CalendarHeroSlice,
+      CalendarHeroSliceDefaultPrimary,
+      CalendarHeroSliceVariation,
+      CalendarHeroSliceDefault,
       FaqsSlice,
       FaqsSliceDefaultPrimaryQnasItem,
       FaqsSliceDefaultPrimary,
