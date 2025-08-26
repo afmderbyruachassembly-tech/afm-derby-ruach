@@ -1,0 +1,31 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Copper"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Fugiat consequat ex dolore quis deserunt veniam reprehenderit irure officia aliqua nisi. Aute ipsum consequat ullamco elit esse proident ipsum exercitation reprehenderit ullamco proident eiusmod. Ipsum in eu dolor Lorem qui ad voluptate laborum do cillum."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

@@ -26,7 +26,7 @@ const Faqs: FC<FaqsProps> = ({ slice }) => {
           <div className="max-w-xl pb-1 text-6xl font-black tracking-tighter">
             <PrismicRichText field={slice.primary.heading} />
           </div>
-          <div className="mb-4">
+          <div className="text-muted-foreground mb-4">
             <PrismicRichText field={slice.primary.body} />
           </div>
           <div className="text-afm-blue flex items-center gap-2 font-bold">

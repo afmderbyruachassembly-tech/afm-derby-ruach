@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 
 export const components = {
   bento_grid_section: dynamic(() => import("./BentoGridSection")),
+  calendar_hero: dynamic(() => import("./CalendarHero")),
   faqs: dynamic(() => import("./Faqs")),
   first_timers: dynamic(() => import("./FirstTimers")),
   footer: dynamic(() => import("./Footer")),

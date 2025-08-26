@@ -68,7 +68,7 @@ const MainMenu: FC<MainMenuProps> = ({ slice }) => {
             className="h-16 w-60"
           />
           <div className="hidden text-lg font-light text-white/70 lg:block">
-            <ul className="flex h-full gap-4">
+            <ul className="flex h-full gap-4 capitalize">
               {slice.primary.linkitem.map((link) => (
                 <li
                   key={link.key}
