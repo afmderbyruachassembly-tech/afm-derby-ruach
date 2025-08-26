@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 // import Button from './button';
