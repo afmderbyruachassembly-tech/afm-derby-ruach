@@ -133,11 +133,11 @@ export type AboutDocument<Lang extends string = string> =
 type CalendarDocumentDataSlicesSlice = CalendarHeroSlice;
 
 /**
- * Content for calendar documents
+ * Content for events documents
  */
 interface CalendarDocumentData {
   /**
-   * Slice Zone field in *calendar*
+   * Slice Zone field in *events*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -146,7 +146,7 @@ interface CalendarDocumentData {
    * - **Documentation**: https://prismic.io/docs/slices
    */
   slices: prismic.SliceZone<CalendarDocumentDataSlicesSlice> /**
-   * Meta Title field in *calendar*
+   * Meta Title field in *events*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -157,7 +157,7 @@ interface CalendarDocumentData {
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *calendar*
+   * Meta Description field in *events*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -168,7 +168,7 @@ interface CalendarDocumentData {
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *calendar*
+   * Meta Image field in *events*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -180,7 +180,7 @@ interface CalendarDocumentData {
 }
 
 /**
- * calendar document from Prismic
+ * events document from Prismic
  *
  * - **API ID**: `calendar`
  * - **Repeatable**: `false`
