@@ -141,7 +141,7 @@ const Navbar = (props: any) => {
                     </Button> */}
 
           {/* Mobile Menu */}
-          <div className="relative h-16 w-16 lg:hidden">
+          <div className="relative h-16 w-16 scale-75 lg:hidden">
             <label
               htmlFor="menu-toggle"
               className="absolute top-0 block h-[60px] cursor-pointer"
@@ -195,9 +195,6 @@ const Navbar = (props: any) => {
                     />
                   </div>
                 )}
-                {/* {isActiveLink(link) && link.variant === "Tertiary" && (
-                  <div className="bg-afm-red h-3 w-3 animate-pulse rounded-full border-2 border-white lg:absolute lg:bottom-0 lg:translate-y-1/2" />
-                )} */}
               </li>
             ))}
           </ul>
