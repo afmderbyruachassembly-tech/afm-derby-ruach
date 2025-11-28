@@ -20,7 +20,7 @@ const Gallery: FC<GalleryProps> = ({ slice }) => {
   const imageRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     const mm = gsap.matchMedia();
-    mm.add("(min-width: 640px)", () => {
+    mm.add("(min-width: 700px)", () => {
       const tl = gsap.timeline();
       tl.from(headingRef.current, {
         scrollTrigger: {
@@ -76,7 +76,7 @@ const Gallery: FC<GalleryProps> = ({ slice }) => {
       <div className="flex flex-col items-center justify-center-safe">
         <div
           ref={headingRef}
-          className="w-[100%] max-w-3xl py-8 text-center text-7xl font-black tracking-tighter"
+          className="w-[100%] max-w-3xl py-8 text-center text-4xl font-black tracking-tighter md:text-7xl"
         >
           <PrismicRichText field={slice.primary.heading} />
         </div>

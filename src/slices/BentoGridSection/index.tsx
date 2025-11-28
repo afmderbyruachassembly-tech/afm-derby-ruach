@@ -1,5 +1,6 @@
 "use client";
 import { Bounded } from "@/components/bounded";
+import renderIcon from "@/utils/render-icon";
 import { useGSAP } from "@gsap/react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
@@ -7,15 +8,12 @@ import { gsap } from "gsap";
 import { SplitText } from "gsap/all";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FC, useRef } from "react";
-import renderIcon from "@/utils/render-icon";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 /**
  * Props for `BentoGridSection`.
  */
 export type BentoGridSectionProps =
   SliceComponentProps<Content.BentoGridSectionSlice>;
-
-
 
 /**
  * Component for "BentoGridSection" Slices.
@@ -27,41 +25,50 @@ const BentoGridSection: FC<BentoGridSectionProps> = ({ slice }) => {
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
-      split = SplitText.create(headingRef.current, {
-        type: "words",
-        linesClass: "line",
-        mask: "words",
-      });
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const isSmallDevice = window.innerWidth < 700;
+      const shouldSkipSplit = isIOS && isSmallDevice;
 
-      gsap.set(split.words, { opacity: 0.3 });
-      gsap.set(".body", { opacity: 0, y: 40 });
-
-      const gridTl = gsap.timeline();
-      gridTl
-        .to(split.words, {
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            end: "40% 80%",
-            scrub: 0.3,
-            invalidateOnRefresh: true,
-          },
-          opacity: 1,
-          stagger: 0.1,
-          ease: "power2.out",
-        })
-        .to(".body", {
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: "center 70%", // Can adjust
-            // end: "center center",
-            scrub: 0.5,
-          },
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2.out",
+      if (!shouldSkipSplit) {
+        split = SplitText.create(headingRef.current, {
+          type: "words",
+          linesClass: "line",
+          mask: "words",
         });
+      }
+
+      const mm = gsap.matchMedia();
+      const gridTl = gsap.timeline();
+      mm.add("(min-width: 700px)", () => {
+        gsap.set(split.words, { opacity: 0.3 });
+        gsap.set(".body", { opacity: 0, y: 40 });
+
+        gridTl
+          .to(split.words, {
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+              end: "40% 80%",
+              scrub: 0.3,
+              invalidateOnRefresh: true,
+            },
+            opacity: 1,
+            stagger: 0.1,
+            ease: "power2.out",
+          })
+          .to(".body", {
+            scrollTrigger: {
+              trigger: headingRef.current,
+              start: "center 70%", // Can adjust
+              // end: "center center",
+              scrub: 0.5,
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+          });
+      });
       const handleResize = () => {
         // Kill existing animations targeting split words
         gsap.killTweensOf(split.words);
@@ -128,19 +135,19 @@ const BentoGridSection: FC<BentoGridSectionProps> = ({ slice }) => {
 
   return (
     <section ref={sectionRef}>
-      <Bounded className="bento-grid-section border-orange-700 py-20">
+      <Bounded className="bento-grid-section border-orange-700 px-4 py-20 lg:px-0">
         <div
           ref={headingRef}
-          className="m-auto max-w-4xl text-center text-4xl xl:text-6xl leading-[115%] font-black tracking-tighter text-balance capitalize"
+          className="m-auto max-w-4xl text-4xl leading-[115%] font-black tracking-tighter text-balance capitalize lg:text-center xl:text-6xl"
         >
           <PrismicRichText field={slice.primary.heading} />
         </div>
-        <div className="body m-auto px-4 mt-4 max-w-5xl text-center text-balance">
+        <div className="body m-auto mt-4 max-w-5xl text-balance lg:text-center">
           <PrismicRichText field={slice.primary.body} />
         </div>
 
         <div className="card_container mt-10">
-          <div className="grid gap-4 px-4 [--corner-radius:16px] sm:grid-cols-2 xl:hidden">
+          <div className="grid gap-4 [--corner-radius:16px] sm:grid-cols-2 lg:px-4 xl:hidden">
             {/* Simple responsive grid for small/medium screens */}
             {slice.primary.card.map((item, index) => (
               <div

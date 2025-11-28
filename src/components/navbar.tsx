@@ -79,7 +79,7 @@ const Navbar = (props: any) => {
     >
       <Bounded
         className={clsx(
-          "rounded-2xl border px-10 py-5 backdrop-blur-sm transition-all duration-300 ease-in-out",
+          "border px-4 py-2 backdrop-blur-sm transition-all duration-300 ease-in-out lg:rounded-2xl lg:px-10 lg:py-5",
           isScrolled
             ? "border-afm-blue/20 bg-afm-blue/90"
             : "border-afm-blue/20 bg-afm-blue/10",

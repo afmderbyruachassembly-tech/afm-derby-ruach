@@ -75,7 +75,7 @@ const ContactForm = () => {
       <Bounded className="px-4 py-8">
         <div className="m-auto max-w-4xl">
           <div className="mb-8 py-8 text-center">
-            <h2 className="text-4xl font-bold tracking-tighter capitalize sm:text-5xl sm:font-extrabold">
+            <h2 className="text-4xl font-extrabold tracking-tighter capitalize sm:text-5xl sm:font-extrabold">
               We&apos;d love to hear from you
             </h2>
             <p className="text-muted-foreground mt-2 text-sm">
@@ -84,7 +84,7 @@ const ContactForm = () => {
           </div>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid gap-4 md:grid-cols-2">
                 <FormField
                   control={form.control}
                   name="firstname"
@@ -151,14 +151,14 @@ const ContactForm = () => {
                   </FormItem>
                 )}
               />
-              <div className="flex items-center gap-8">
+              <div className="flex flex-col items-center gap-2 lg:flex-row lg:gap-8">
                 <Button
                   type="submit"
-                  className="bg-afm-blue hover:bg-afm-blue/90 cursor-pointer py-4 text-white transition-all hover:scale-110"
+                  className="bg-afm-blue hover:bg-afm-blue/90 w-full cursor-pointer py-4 text-white transition-all hover:scale-110 lg:w-auto"
                 >
                   Send Message <HiOutlinePaperAirplane />
                 </Button>
-                <span className="text-muted-foreground text-sm">
+                <span className="text-muted-foreground block pb-4 text-sm lg:inline">
                   By submitting this form, I agree to be contacted by AFM DERBY
                   RUACH ASSEMBLY regarding church activities, prayer requests,
                   and community fellowship opportunities.

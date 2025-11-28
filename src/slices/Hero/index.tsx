@@ -27,60 +27,71 @@ const Hero: FC<HeroProps> = ({ slice }) => {
   const headingRef = useRef(null);
   const contentContainerRef = useRef(null);
 
+  const mm = gsap.matchMedia();
+
   useGSAP(() => {
     const ctx = gsap.context(() => {
-      const split = SplitText.create(headingRef.current, {
-        type: "words,lines",
-        linesClass: "line",
-        mask: "lines",
-      });
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const isSmallDevice = window.innerWidth < 700;
+      const shouldSkipSplit = isIOS && isSmallDevice;
 
+      let split: SplitText;
+
+      if (!shouldSkipSplit) {
+        split = SplitText.create(headingRef.current, {
+          type: "words,lines",
+          linesClass: "line",
+          mask: "lines",
+        });
+      }
       // Intro animation
       const introTl = gsap.timeline({ paused: true });
 
-      introTl
-        .set(split.lines, { y: 100, opacity: 0 })
-        .set(".body, .rsvp, .cta-scroll", { y: 20, opacity: 0 })
-        .to(contentContainerRef.current, { opacity: 1, duration: 0.5 })
-        .to(split.lines, {
-          duration: 1,
-          y: 0,
-          opacity: 1,
-          stagger: 0.1,
-          ease: "power2.out",
-          delay: 0.3,
-        })
-        .to(
-          ".body",
-          {
+      mm.add("(min-width: 700px)", () => {
+        introTl
+          .set(split.lines, { y: 100, opacity: 0 })
+          .set(".body, .rsvp, .cta-scroll", { y: 20, opacity: 0 })
+          .to(contentContainerRef.current, { opacity: 1, duration: 0.5 })
+          .to(split.lines, {
+            duration: 1,
             y: 0,
             opacity: 1,
-            duration: 1,
-            ease: "power2.out",
-          },
-          "-=0.5",
-        )
-        .to(
-          ".rsvp",
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "power2.out",
             stagger: 0.1,
-          },
-          "-=0.8",
-        )
-        .to(
-          ".cta-scroll",
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
             ease: "power2.out",
-          },
-          "-=0.9",
-        );
+            delay: 0.3,
+          })
+          .to(
+            ".body",
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              ease: "power2.out",
+            },
+            "-=0.5",
+          )
+          .to(
+            ".rsvp",
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              ease: "power2.out",
+              stagger: 0.1,
+            },
+            "-=0.8",
+          )
+          .to(
+            ".cta-scroll",
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              ease: "power2.out",
+            },
+            "-=0.9",
+          );
+      });
 
       ScrollTrigger.create({
         trigger: sectionRef.current,
@@ -170,7 +181,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       ref={sectionRef}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative top-0 -z-10 overflow-hidden h-screen md:h-screen lg:h-screen xl:h-screen 2xl:h-[90vh]"
+      className="relative top-0 -z-10 h-screen overflow-hidden md:h-screen lg:h-screen xl:h-screen 2xl:h-[90vh]"
     >
       <div className="absolute -z-10 h-full w-full">
         {slice.variation !== "default" ? (
@@ -195,7 +206,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       </div>
 
       <Bounded className="relative h-full">
-        <div className="relative mx-auto flex h-full xl:max-w-[70%] flex-col items-center justify-center overflow-hidden rounded-2xl text-white">
+        <div className="relative mx-auto flex h-full flex-col items-center justify-center overflow-hidden rounded-2xl text-white xl:max-w-[70%]">
           <div className="mix-blend-hard-light">
             {/******Texture*******/}
             <div className="texture absolute inset-0 mix-blend-multiply backdrop-blur-3xl">
@@ -215,18 +226,18 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           {/*******Content Container********/}
           <div
             ref={contentContainerRef}
-            className="relative z-10 pt-10 w-full md:px-4 lg:max-w-2xl xl:max-w-4xl lg:px-6 xl:px-8  text-center opacity-0"
+            className="relative z-10 w-full px-4 sm:opacity-0 md:px-4 md:pt-10 lg:max-w-2xl lg:px-6 lg:text-center xl:max-w-4xl xl:px-8"
           >
             <div
               ref={headingRef}
-              className="heading mb-4 lg:text-6xl text-4xl leading-[110%] xl:leading-[115%] font-black tracking-tighter text-balance capitalize xl:text-7xl"
+              className="heading mb-4 text-5xl leading-[110%] font-black tracking-tighter text-balance capitalize lg:text-6xl xl:text-7xl xl:leading-[115%]"
             >
               <PrismicRichText field={slice.primary.heading} />
             </div>
-            <div className="body text-afm-lightgray text-lg text-balance text-shadow-black/20 text-shadow-md">
+            <div className="body text-afm-lightgray hidden text-lg text-balance text-shadow-black/20 text-shadow-md lg:block">
               <PrismicRichText field={slice.primary.body} />
             </div>
-            <div className="mt-8 flex justify-evenly text-left">
+            <div className="mt-8 flex justify-evenly gap-4 text-left lg:gap-0.5">
               {slice.primary.location.map((item, index) => (
                 // Render the item
                 <div key={index} className="rsvp">

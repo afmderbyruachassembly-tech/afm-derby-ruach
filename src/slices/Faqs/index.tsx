@@ -21,9 +21,9 @@ const Faqs: FC<FaqsProps> = ({ slice }) => {
       data-slice-variation={slice.variation}
       className="xl:py-40"
     >
-      <Bounded className="grid px-4 lg:grid-cols-2">
+      <Bounded className="grid px-4 pt-10 lg:grid-cols-2">
         <div className="content col-span-1">
-          <div className="max-w-xl pb-1 text-6xl font-black tracking-tighter">
+          <div className="max-w-xl pb-1 text-3xl font-black tracking-tighter md:text-6xl">
             <PrismicRichText field={slice.primary.heading} />
           </div>
           <div className="text-muted-foreground mb-4">
