@@ -181,7 +181,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       ref={sectionRef}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative top-0 -z-10 h-screen overflow-hidden md:h-screen lg:h-screen xl:h-screen 2xl:h-[90vh]"
+      className="relative top-0 -z-10 h-screen overflow-hidden md:min-h-screen 3xl:min-h-[90vh]"
     >
       <div className="absolute -z-10 h-full w-full">
         {slice.variation !== "default" ? (
