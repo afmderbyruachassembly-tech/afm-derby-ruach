@@ -1,6 +1,5 @@
 import { repositoryName } from "@/prismicio";
 import { PrismicPreview } from "@prismicio/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter } from "next/font/google";
 // import localFont from "next/font/local";
 import Navbar from "@/components/navbar";
@@ -66,7 +65,6 @@ export default async function RootLayout({
         <script async defer src="https://static.cdn.prismic.io/prismic.js?new=true&repo=afmderby"></script>
       </head>
       <body>
-        <SpeedInsights />
         <Navbar data={data.navigation.data} />
         <div className="relative min-h-[100vh]">{children}</div>
       </body>
