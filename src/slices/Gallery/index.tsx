@@ -1,9 +1,9 @@
 "use client";
-import { useGSAP } from "@gsap/react";
+// import { useGSAP } from "@gsap/react";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
-import { gsap } from "gsap";
+// import { gsap } from "gsap";
 import { FC, useRef } from "react";
 
 /**
@@ -18,54 +18,54 @@ const Gallery: FC<GalleryProps> = ({ slice }) => {
   const headingRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
-  useGSAP(() => {
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 700px)", () => {
-      const tl = gsap.timeline();
-      tl.from(headingRef.current, {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          end: "bottom 60%",
-          scrub: true,
-        },
-        y: 150,
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.out",
-      })
-        .from(".img-anim", {
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 60%",
-            end: "bottom bottom",
-            scrub: true,
-          },
-          scale: 0,
-          opacity: 0,
-          y: 50,
-          duration: 1,
-          ease: "power2.out",
-          stagger: 0.5,
-        })
-        .to(".img-anim", {
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "bottom 95%",
-            end: "bottom top",
-            scrub: true,
-            toggleClass: { targets: ".img-anim", className: "mx-lg" },
-          },
-          scale: 3,
-          opacity: 0.9,
-          y: -200,
-          duration: 5,
-          ease: "power2.out",
-          stagger: 0.5,
-        });
-    });
-    return () => mm.revert();
-  });
+  // useGSAP(() => {
+  //   const mm = gsap.matchMedia();
+  //   mm.add("(min-width: 700px)", () => {
+  //     const tl = gsap.timeline();
+  //     tl.from(headingRef.current, {
+  //       scrollTrigger: {
+  //         trigger: sectionRef.current,
+  //         start: "top 80%",
+  //         end: "bottom 60%",
+  //         scrub: true,
+  //       },
+  //       y: 150,
+  //       opacity: 0,
+  //       duration: 0.5,
+  //       ease: "power2.out",
+  //     })
+  //       .from(".img-anim", {
+  //         scrollTrigger: {
+  //           trigger: sectionRef.current,
+  //           start: "top 60%",
+  //           end: "bottom bottom",
+  //           scrub: true,
+  //         },
+  //         scale: 0,
+  //         opacity: 0,
+  //         y: 50,
+  //         duration: 1,
+  //         ease: "power2.out",
+  //         stagger: 0.5,
+  //       })
+  //       .to(".img-anim", {
+  //         scrollTrigger: {
+  //           trigger: sectionRef.current,
+  //           start: "bottom 95%",
+  //           end: "bottom top",
+  //           scrub: true,
+  //           toggleClass: { targets: ".img-anim", className: "mx-lg" },
+  //         },
+  //         scale: 3,
+  //         opacity: 0.9,
+  //         y: -200,
+  //         duration: 5,
+  //         ease: "power2.out",
+  //         stagger: 0.5,
+  //       });
+  //   });
+  //   return () => mm.revert();
+  // });
   return (
     <section
       data-slice-type={slice.slice_type}
