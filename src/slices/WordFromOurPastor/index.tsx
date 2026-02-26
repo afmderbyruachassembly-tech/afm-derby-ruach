@@ -35,7 +35,7 @@ const WordFromOurPastor: FC<WordFromOurPastorProps> = ({ slice }) => {
             <div className="bg-afm-card-bg inset-0 -z-10 m-[calc(var(--corner-radius)/2)] h-fit rotate-y-180 overflow-clip rounded-[calc(var(--corner-radius)/2)] transition-transform">
               <PrismicNextImage
                 field={slice.primary.pastor_image}
-                className="h-[500px] w-full scale-200 object-cover"
+                className="h-[500px] w-full scale-100 object-cover"
               />
             </div>
 
