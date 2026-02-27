@@ -27,7 +27,7 @@ const ChurchLeadership: FC<ChurchLeadershipProps> = ({ slice }) => {
           <div className='flex gap-4 [--corner-radius:16px] grid grid-cols-12'>
             
           {slice.primary.card.map((item) => (
-            <div key={item.name} className='bentocard border-afm-card-bg before:bg-afm-card-bg relative rounded-[var(--corner-radius)] border p-2 before:absolute before:inset-0 before:-z-10 before:m-[calc(var(--corner-radius)/2)] before:rounded-[calc(var(--corner-radius)/2)] before:content-[""]  col-span-3'>
+            <div key={item.name} className='bentocard border-afm-card-bg before:bg-afm-card-bg relative rounded-[var(--corner-radius)] border p-2 before:absolute before:inset-0 before:-z-10 before:m-[calc(var(--corner-radius)/2)] before:rounded-[calc(var(--corner-radius)/2)] before:content-[""]  col-span-3 sm:col-span-6 lg:col-span-4'>
               <PrismicNextImage field={item.profile} className='rounded-sm'/>
               <div className='px-4 pb-2'>
                 <p className='mt-2 font-bold'>{item.name}</p>
