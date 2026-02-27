@@ -73,14 +73,14 @@ const Gallery: FC<GalleryProps> = ({ slice }) => {
       className="bg-afm-card-bg relative overflow-hidden py-20 xl:pb-40"
       ref={sectionRef}
     >
-      <div className="flex flex-col items-center justify-center-safe">
+      <div className="flex flex-col items-center justify-center-safe sm:min-h-[300px]">
         <div
           ref={headingRef}
           className="w-[100%] max-w-3xl py-8 text-center text-4xl font-black tracking-tighter md:text-7xl"
         >
           <PrismicRichText field={slice.primary.heading} />
         </div>
-        <div className="relative z-10 grid gap-4 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div className="relative z-10 grid gap-4 px-4  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {slice.primary.gallery?.map((item, i) => (
             <div
               ref={imageRef}
