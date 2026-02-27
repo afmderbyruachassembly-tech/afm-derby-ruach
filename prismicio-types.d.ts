@@ -268,7 +268,7 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-type MinistriesDocumentDataSlicesSlice = MinistriesSlice;
+type MinistriesDocumentDataSlicesSlice = CalendarHeroSlice | MinistriesSlice;
 
 /**
  * Content for ministries documents

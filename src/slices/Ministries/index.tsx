@@ -1,6 +1,8 @@
-import { FC } from "react";
+import { Bounded } from '@/components/bounded';
 import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import { PrismicNextImage } from '@prismicio/next';
+import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { FC } from "react";
 
 /**
  * Props for `Ministries`.
@@ -16,36 +18,23 @@ const Ministries: FC<MinistriesProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      Placeholder component for ministries (variation: {slice.variation})
-      slices.
-      <br />
-      <strong>You can edit this slice directly in your code editor.</strong>
-      {/**
-       * 💡 Use Prismic MCP with your code editor
-       *
-       * Get AI-powered help to build your slice components — based on your actual model.
-       *
-       * ▶️ Setup:
-       * 1. Add a new MCP Server in your code editor:
-       *
-       * {
-       *   "mcpServers": {
-       *     "Prismic MCP": {
-       *       "command": "npx",
-       *       "args": ["-y", "@prismicio/mcp-server@latest"]
-       *     }
-       *   }
-       * }
-       *
-       * 2. Select a model optimized for coding (e.g. Claude 3.7 Sonnet or similar)
-       *
-       * ✅ Then open your slice file and ask your code editor:
-       *    "Code this slice"
-       *
-       * Your code editor reads your slice model and helps you code faster ⚡
-       * 🎙️ Give your feedback: https://community.prismic.io/t/help-us-shape-the-future-of-slice-creation/19505
-       * 📚 Documentation: https://prismic.io/docs/ai#code-with-prismics-mcp-server
-       */}
+      <Bounded>
+        <div className='py-40'>
+          {slice.primary.ministrycard.map((item) => (
+            <div key={item.ministry_name} className='relative mb-40 grid grid-cols-12 gap-4'>
+              <div className='col-span-6'>
+                 <h1 className="text-8xl font-extrabold opacity-3 absolute z-0 -top-10 max-w-sm">{item.ministry_name}</h1>
+              <h3 className="text-6xl font-extrabold mb-4">{item.ministry_name}</h3>
+              <div><PrismicRichText field={item.description} /></div>
+              </div>
+              <div className='col-span-6'>
+                <PrismicNextImage field={item.ministry_image} width={300} />
+              </div>
+            </div>
+            
+          ))}
+        </div>
+      </Bounded>
     </section>
   );
 };

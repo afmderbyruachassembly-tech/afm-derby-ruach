@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "calendar_hero": {
+              "type": "SharedSlice"
+            },
             "ministries": {
               "type": "SharedSlice"
             }
