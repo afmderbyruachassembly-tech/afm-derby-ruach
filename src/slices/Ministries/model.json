@@ -1,0 +1,70 @@
+{
+  "id": "ministries",
+  "type": "SharedSlice",
+  "name": "Ministries",
+  "description": "Ministries",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "ministrycard": {
+          "type": "Group",
+          "config": {
+            "label": "MinistryCard",
+            "repeat": true,
+            "fields": {
+              "ministry_image": {
+                "type": "Image",
+                "config": {
+                  "label": "ministry_image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "ministry_name": {
+                "type": "Text",
+                "config": {
+                  "label": "Ministry Name",
+                  "placeholder": ""
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "description",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "multi": "paragraph,strong,em"
+                }
+              },
+              "flipped": {
+                "type": "Boolean",
+                "config": {
+                  "label": "flipped",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true",
+                  "default_value": false
+                }
+              },
+              "bg_color": {
+                "type": "Boolean",
+                "config": {
+                  "label": "bg_color",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true",
+                  "default_value": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

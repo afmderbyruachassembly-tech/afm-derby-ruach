@@ -12,5 +12,6 @@ export const components = {
   gallery: dynamic(() => import("./Gallery")),
   hero: dynamic(() => import("./Hero")),
   main_menu: dynamic(() => import("./MainMenu")),
+  ministries: dynamic(() => import("./Ministries")),
   word_from_our_pastor: dynamic(() => import("./WordFromOurPastor")),
 };

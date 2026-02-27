@@ -134,7 +134,7 @@ interface AboutDocumentData {
 export type AboutDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
 
-type CalendarDocumentDataSlicesSlice = CalendarHeroSlice;
+type CalendarDocumentDataSlicesSlice = MinistriesSlice | CalendarHeroSlice;
 
 /**
  * Content for events documents
@@ -268,7 +268,7 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-type MinistriesDocumentDataSlicesSlice = never;
+type MinistriesDocumentDataSlicesSlice = MinistriesSlice;
 
 /**
  * Content for ministries documents
@@ -1455,6 +1455,110 @@ export type MainMenuSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *Ministries → Default → Primary → MinistryCard*
+ */
+export interface MinistriesSliceDefaultPrimaryMinistrycardItem {
+  /**
+   * ministry_image field in *Ministries → Default → Primary → MinistryCard*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ministries.default.primary.ministrycard[].ministry_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  ministry_image: prismic.ImageField<never>;
+
+  /**
+   * Ministry Name field in *Ministries → Default → Primary → MinistryCard*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ministries.default.primary.ministrycard[].ministry_name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  ministry_name: prismic.KeyTextField;
+
+  /**
+   * description field in *Ministries → Default → Primary → MinistryCard*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ministries.default.primary.ministrycard[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * flipped field in *Ministries → Default → Primary → MinistryCard*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: ministries.default.primary.ministrycard[].flipped
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  flipped: prismic.BooleanField;
+
+  /**
+   * bg_color field in *Ministries → Default → Primary → MinistryCard*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: ministries.default.primary.ministrycard[].bg_color
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  bg_color: prismic.BooleanField;
+}
+
+/**
+ * Primary content in *Ministries → Default → Primary*
+ */
+export interface MinistriesSliceDefaultPrimary {
+  /**
+   * MinistryCard field in *Ministries → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ministries.default.primary.ministrycard[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  ministrycard: prismic.GroupField<
+    Simplify<MinistriesSliceDefaultPrimaryMinistrycardItem>
+  >;
+}
+
+/**
+ * Default variation for Ministries Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type MinistriesSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<MinistriesSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Ministries*
+ */
+type MinistriesSliceVariation = MinistriesSliceDefault;
+
+/**
+ * Ministries Shared Slice
+ *
+ * - **API ID**: `ministries`
+ * - **Description**: Ministries
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type MinistriesSlice = prismic.SharedSlice<
+  "ministries",
+  MinistriesSliceVariation
+>;
+
+/**
  * Primary content in *WordFromOurPastor → Default → Primary*
  */
 export interface WordFromOurPastorSliceDefaultPrimary {
@@ -1609,6 +1713,11 @@ declare module "@prismicio/client" {
       MainMenuSliceDefaultPrimary,
       MainMenuSliceVariation,
       MainMenuSliceDefault,
+      MinistriesSlice,
+      MinistriesSliceDefaultPrimaryMinistrycardItem,
+      MinistriesSliceDefaultPrimary,
+      MinistriesSliceVariation,
+      MinistriesSliceDefault,
       WordFromOurPastorSlice,
       WordFromOurPastorSliceDefaultPrimary,
       WordFromOurPastorSliceVariation,
