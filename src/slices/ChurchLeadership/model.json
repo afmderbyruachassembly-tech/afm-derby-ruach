@@ -1,0 +1,76 @@
+{
+  "id": "church_leadership",
+  "type": "SharedSlice",
+  "name": "ChurchLeadership",
+  "description": "ChurchLeadership",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "description": {
+          "type": "Text",
+          "config": {
+            "label": "description",
+            "placeholder": ""
+          }
+        },
+        "card": {
+          "type": "Group",
+          "config": {
+            "label": "card",
+            "repeat": true,
+            "fields": {
+              "profile": {
+                "type": "Image",
+                "config": {
+                  "label": "profile",
+                  "constraint": {
+                    "width": 300,
+                    "height": 300
+                  },
+                  "thumbnails": []
+                }
+              },
+              "name": {
+                "type": "Text",
+                "config": {
+                  "label": "name",
+                  "placeholder": ""
+                }
+              },
+              "position": {
+                "type": "Text",
+                "config": {
+                  "label": "position",
+                  "placeholder": ""
+                }
+              },
+              "bio": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "bio",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "single": "list-item,o-list-item,rtl,paragraph,strong,em"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

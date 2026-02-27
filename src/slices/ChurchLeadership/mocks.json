@@ -1,0 +1,85 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"card": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"profile",
+								{
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468",
+										"width": 4000,
+										"height": 6000
+									},
+									"url": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?rect=0%2C1000%2C4000%2C4000&w=300&h=300",
+									"width": 300,
+									"height": 300,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 1000
+										},
+										"background": "transparent"
+									},
+									"alt": "swung",
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							],
+							[
+								"name",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "melted",
+									"type": "Text"
+								}
+							],
+							[
+								"position",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "traffic",
+									"type": "Text"
+								}
+							],
+							[
+								"bio",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Lorem commodo exercitation mollit dolor quis cupidatat ipsum tempor esse. Cupidatat irure nostrud deserunt voluptate commodo elit eu aliqua aute cupidatat. Ad ullamco exercitation ad proident culpa ea Lorem occaecat ut et quis mollit mollit."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "knowledge",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "FieldContent",
+				"value": "name",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

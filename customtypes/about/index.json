@@ -11,6 +11,15 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "calendar_hero": {
+              "type": "SharedSlice"
+            },
+            "bento_grid_section": {
+              "type": "SharedSlice"
+            },
+            "church_leadership": {
+              "type": "SharedSlice"
+            },
             "hero": {
               "type": "SharedSlice"
             }

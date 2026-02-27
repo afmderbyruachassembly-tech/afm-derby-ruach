@@ -47,7 +47,11 @@
                     "LuUsers ",
                     "LuShield",
                     "LuChurch ",
-                    "LuCompass "
+                    "LuCompass ",
+                    "Scale",
+                    "Vault",
+                    "Crosshair",
+                    "Send"
                   ]
                 }
               },
