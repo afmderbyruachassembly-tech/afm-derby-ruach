@@ -1,4 +1,5 @@
-import {LuBookOpen, LuChurch, LuCompass, LuHeart, LuShield, LuUsers} from "react-icons/lu";
+import { Crosshair, Scale, Vault } from 'lucide-react';
+import { LuBookOpen, LuChurch, LuCompass, LuHeart, LuShield, LuUsers } from "react-icons/lu";
 
 const iconMap = {
     LuHeart: LuHeart,
@@ -7,6 +8,9 @@ const iconMap = {
     LuChurch: LuChurch,
     LuUsers: LuUsers,
     LuCompass: LuCompass,
+    Vault: Vault,
+    Crosshair: Crosshair,
+    Scale: Scale,
 };
 
 const renderIcon = (iconName: string) => {
