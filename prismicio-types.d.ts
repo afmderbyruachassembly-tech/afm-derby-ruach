@@ -69,7 +69,11 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type AboutDocumentDataSlicesSlice = HeroSlice;
+type AboutDocumentDataSlicesSlice =
+  | CalendarHeroSlice
+  | BentoGridSectionSlice
+  | ChurchLeadershipSlice
+  | HeroSlice;
 
 /**
  * Content for about documents
@@ -530,6 +534,10 @@ export interface BentoGridSectionSliceDefaultPrimaryCardItem {
     | "LuShield"
     | "LuChurch "
     | "LuCompass "
+    | "Scale"
+    | "Vault"
+    | "Crosshair"
+    | "Send"
   >;
 
   /**
@@ -760,6 +768,118 @@ type CalendarHeroSliceVariation = CalendarHeroSliceDefault;
 export type CalendarHeroSlice = prismic.SharedSlice<
   "calendar_hero",
   CalendarHeroSliceVariation
+>;
+
+/**
+ * Item in *ChurchLeadership → Default → Primary → card*
+ */
+export interface ChurchLeadershipSliceDefaultPrimaryCardItem {
+  /**
+   * profile field in *ChurchLeadership → Default → Primary → card*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_leadership.default.primary.card[].profile
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  profile: prismic.ImageField<never>;
+
+  /**
+   * name field in *ChurchLeadership → Default → Primary → card*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_leadership.default.primary.card[].name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * position field in *ChurchLeadership → Default → Primary → card*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_leadership.default.primary.card[].position
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  position: prismic.KeyTextField;
+
+  /**
+   * bio field in *ChurchLeadership → Default → Primary → card*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_leadership.default.primary.card[].bio
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  bio: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *ChurchLeadership → Default → Primary*
+ */
+export interface ChurchLeadershipSliceDefaultPrimary {
+  /**
+   * Title field in *ChurchLeadership → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_leadership.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * description field in *ChurchLeadership → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_leadership.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * card field in *ChurchLeadership → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: church_leadership.default.primary.card[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  card: prismic.GroupField<
+    Simplify<ChurchLeadershipSliceDefaultPrimaryCardItem>
+  >;
+}
+
+/**
+ * Default variation for ChurchLeadership Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ChurchLeadershipSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ChurchLeadershipSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ChurchLeadership*
+ */
+type ChurchLeadershipSliceVariation = ChurchLeadershipSliceDefault;
+
+/**
+ * ChurchLeadership Shared Slice
+ *
+ * - **API ID**: `church_leadership`
+ * - **Description**: ChurchLeadership
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ChurchLeadershipSlice = prismic.SharedSlice<
+  "church_leadership",
+  ChurchLeadershipSliceVariation
 >;
 
 /**
@@ -1453,6 +1573,11 @@ declare module "@prismicio/client" {
       CalendarHeroSliceDefaultPrimary,
       CalendarHeroSliceVariation,
       CalendarHeroSliceDefault,
+      ChurchLeadershipSlice,
+      ChurchLeadershipSliceDefaultPrimaryCardItem,
+      ChurchLeadershipSliceDefaultPrimary,
+      ChurchLeadershipSliceVariation,
+      ChurchLeadershipSliceDefault,
       FaqsSlice,
       FaqsSliceDefaultPrimaryQnasItem,
       FaqsSliceDefaultPrimary,
