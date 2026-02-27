@@ -66,7 +66,7 @@ export default async function RootLayout({
       </head>
       <body>
         <Navbar data={data.navigation.data} />
-        <div className="relative min-h-[100vh]">{children}</div>
+        <div className="relative min-h-[100vh] ">{children}</div>
       </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
